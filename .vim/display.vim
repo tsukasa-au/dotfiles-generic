@@ -34,3 +34,11 @@ set title
 " Make the autocompletion of filenames,etc behave like bash
 set wildmode=longest,list
 
+" Allow splits to have 0 height (use C-W _)
+set wmh=0
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+
+" Always keep one line of context around the cursor
+set scrolloff=1
+
