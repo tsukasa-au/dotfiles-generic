@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Abandon the Solaris machines
+[ "$(uname)" = "SunOS" ] && return
+
+# Use the compiled software in ~suits/pub
+SUITSDIR="/usr/extern/suits/pub"
+export PYTHONPATH="$PYTHONPATH:$SUITSDIR/lib/python2.4/site-packages"
+export PATH="$SUITSDIR/bin:$PATH"
+export LD_LIBRARY_PATH="$SUITSDIR/lib:$LD_LIBRARY_PATH"
+
+# If there is a ~/.inputrc then we'll use that instead of the system one
+[ -r ~/.inputrc ] && unset INPUTRC
+
+# Make a temp directory for us
+mkdir -p "/tmp/$USER"
+
