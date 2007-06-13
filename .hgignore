@@ -1,3 +1,6 @@
 .vim/viminfo
 .ssh/identity
 .ssh/identity.pub
+.ssh/id_dsa
+.ssh/id_dsa.pub
+.ssh/known_hosts
