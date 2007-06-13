@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export EMAIL="person@usyd.edu.au"
+
 # Abandon the Solaris machines
 [ "$(uname)" = "SunOS" ] && return
 
