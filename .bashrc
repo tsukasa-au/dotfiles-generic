@@ -76,7 +76,7 @@ alias la='ls -ha'
 alias  l='ls -halF'
 alias rm='rm -i'
 alias less='less -R'
-alias screen='TERM=screen screen'
+alias screen='TERM=xterm screen'
 
 shopt -s checkwinsize
 
