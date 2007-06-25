@@ -34,6 +34,12 @@ URxvt.keysym.End: \033[4~
 ! Scrollback buffer
 URxvt.saveLines: 8192
 
+! Put the scrollbar on the right
+URxvt.scrollBar_right: true
+
+! Tab characters don't turn into spaces
+URxvt.pasteableTabs: true
+
 ! Fonts
 !URxvt.font: 9x15
 !URxvt.font: fixed
