@@ -19,6 +19,7 @@ export CVS_RSH="ssh"
 export RSYNC_RSH="ssh"
 export PYTHONSTARTUP="$HOME/.pythonrc.py"
 export HISTCONTROL="ignoredups"
+export HISTSIZE="10000"
 
 # Local customisations
 [ -f ~/.bash_profile_local ] && source ~/.bash_profile_local
