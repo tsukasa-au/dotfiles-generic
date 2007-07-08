@@ -34,10 +34,12 @@ fi
 # Set the prompt colour, and the colors for the 'ls' command appropriately,
 # depending on the background of the terminal.
 if [ ${PS1_COLOR:-0} -eq 1 ]; then
-	LS_COLORS='no=00:fi=00:di=00;34:ln=00;36:pi=40;33:so=00;35:do=00;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=00;32:*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31:*.bz2=00;31:*.deb=00;31:*.rpm=00;31:*.jar=00;31:*.jpg=00;35:*.jpeg=00;35:*.gif=00;35:*.bmp=00;35:*.pbm=00;35:*.pgm=00;35:*.ppm=00;35:*.tga=00;35:*.xbm=00;35:*.xpm=00;35:*.tif=00;35:*.tiff=00;35:*.png=00;35:*.mov=00;35:*.mpg=00;35:*.mpeg=00;35:*.avi=00;35:*.fli=00;35:*.gl=00;35:*.dl=00;35:*.xcf=00;35:*.xwd=00;35:*.flac=00;35:*.mp3=00;35:*.mpc=00;35:*.ogg=00;35:*.wav=00;35:'
+	eval $(dircolors)
 	PS1='\[\033[00;31m\]\u@\h\[\033[00m\]:\[\033[00;34m\]\w\[\033[00m\]\$ '
 
-	if [ ${DARK:-0} -eq 1 ]; then
+	if [ ${DARK:-0} -eq 0 ]; then
+		LS_COLORS="$(echo "${LS_COLORS}" | sed 's/01;/00;/g')"
+	else
 		# We need to bold the LS_COLORS and PS1 environment variables
 		# so they show up on a dark terminal
 		LS_COLORS="$(echo "${LS_COLORS}" | sed 's/00;/01;/g')"
