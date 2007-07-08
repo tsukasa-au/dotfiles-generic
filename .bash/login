@@ -3,7 +3,7 @@
 # Is run whenever we have a login interactive shell. Just prints a little
 # welcome message.
 
-echo "Welcome to $(uname)"
+echo "Welcome to $(uname)"'!'
 if which fortune &> /dev/null; then
 	echo $(fortune -s)
 	echo
