@@ -1,0 +1,37 @@
+#! bash
+
+# Sets up the shell for interactive commands
+
+# xterm titlebar displays current command
+case "${TERM}" in
+xterm*|rxvt*)
+	HOSTNAME="$(hostname | cut -d '.' -f 1)"
+	CWD_WITHHOME='"$(echo "${PWD}" | sed "s|^${HOME}|~|")"'
+	PROMPT_COMMAND="echo -ne \"\033]0;${HOSTNAME}: ${CWD_WITHHOME}\007\""
+	unset HOSTNAME
+	;;
+*)
+	;;
+esac
+
+# Prompt: user@host:directory$
+PS1='\u@\h:\w\$ '
+
+# Useful aliases
+alias ls='ls --color=auto'
+alias ll='ls -hlF'
+alias la='ls -ha'
+alias  l='ls -halF'
+alias rm='rm -i'
+alias less='less -R'
+alias screen='TERM=xterm screen'
+
+# Bash should check the terminal size after every command terminates
+shopt -s checkwinsize
+
+# The all important colours!
+ssource "${HOME}/.bash/colors"
+
+# Local customisations
+ssource "${HOME}/.bash/interactive_local"
+
