@@ -2,11 +2,13 @@
 
 import time, os, os.path, sys
 
+# To override the defaults, set these variables
+EMAIL = ""
+
 macros = {}
 macros["YDATE"] = lambda: time.strftime("%Y-%m-%d")
 macros["YEAR"]  = lambda: time.strftime("%Y")
-macros["NAME"]  = lambda: "Put your name in ~/.vim/abbrs2out.vim"
-macros["EMAIL"] = lambda: "Then run that script"
+macros["EMAIL"] = lambda: EMAIL or os.environ.get("EMAIL")
 
 
 vimdir = os.path.join(os.environ.get("HOME"), ".vim")

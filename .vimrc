@@ -15,6 +15,10 @@ source ~/.vim/display.vim
 source ~/.vim/mouse.vim
 source ~/.vim/indent.vim
 source ~/.vim/search.vim
-source ~/.vim/abbrsout.vim
 source ~/.vim/commands.vim
+source ~/.vim/commenter.vim
+if !filereadable(expand("~/.vim/abbrsout.vim"))
+	!python ~/.vim/abbrs2vim.py
+endif
+source ~/.vim/abbrsout.vim
 
