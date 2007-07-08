@@ -1,0 +1,33 @@
+This is a set of configuration files for a bunch of Unix apps I use regularly.
+
+The way I usually use this is as follows. Change the lines as appropriate for
+your system.
+
+Install Mercurial:
+	$ sudo apt-get install mercurial
+
+Change into your home directory and make a clone of the repository:
+	$ cd
+	$ hg clone http://delx.cjb.net/hg/hgdotfiles-generic .hgdotfiles-computername
+
+Make a backup of any existing files:
+	$ mkdir backup
+	$ mv .bash* .ssh .vim* .Xresources .xscreensaver .screenrc .pythonrc.py .inputrc .ssh backup
+
+Symlink the config files into your home directory:
+	$ for f in $(ls -A .hgdotfiles-computername); do ln -s .hgdotfiles-computername/$i .; done
+	$ rm .hg .hgignore
+
+
+Your done now. You probably want to move your ssh keys back into ~/.ssh (which
+now links to ~/.hgdotfiles-computername/.ssh), as well as add a few machine
+specific configs to the bash init scripts.
+
+Create files in ~/.bash called environment_local, interactive_local, etc to
+do this. Also, learn how to use Mercurial and use it to version control other
+configure files of yours.
+
+Here are some good Mercurial tutorials:
+http://hgbook.red-bean.com/
+http://www.selenic.com/mercurial/wiki/index.cgi/QuickStart
+
