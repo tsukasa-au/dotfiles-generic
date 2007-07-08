@@ -8,7 +8,7 @@ EMAIL = ""
 macros = {}
 macros["YDATE"] = lambda: time.strftime("%Y-%m-%d")
 macros["YEAR"]  = lambda: time.strftime("%Y")
-macros["EMAIL"] = lambda: EMAIL or os.environ.get("EMAIL")
+macros["EMAIL"] = lambda: EMAIL or os.environ.get("EMAIL", "~/.vim/abbrs2vim.py")
 
 
 vimdir = os.path.join(os.environ.get("HOME"), ".vim")
