@@ -4,10 +4,8 @@
 # welcome message.
 
 echo "Welcome to $(uname)"'!'
-if which fortune &> /dev/null; then
-	echo $(fortune -s)
-	echo
-fi
+cookie="$(fortune 2> /dev/null)"
+[ -n "${cookie}" ] && echo "${cookie}" && echo
 
 ssource "${HOME}/.bash/login_local"
 
