@@ -15,8 +15,13 @@
 [ "$TERM" = "rxvt"          ] && PS1_COLOR=1
 [ "$TERM" = "rxvt-unicode"  ] && PS1_COLOR=1
 
-# Use colours appropriate to a light on dark terminal, we can autodetect
-# this for some terminals, for others we define it above.
+# Override COLORFGBG (probably used the darkterm or lightterm function
+if [ -n "${DARK}" ]; then
+	unset COLORFGBG
+fi
+
+# If COLORFGBG is set, use it to determine the terminal type, DARK=0 is
+# dark on light, DARK=1 is light on dark.
 if [ -n "$COLORFGBG" ]; then
 	FGCOLOR=$(echo $COLORFGBG | cut -d ';' -f 1)
 	BGCOLOR=$(echo $COLORFGBG | cut -d ';' -f 3)
@@ -25,10 +30,14 @@ if [ -n "$COLORFGBG" ]; then
 	fi
 	unset FGCOLOR
 	unset BGCOLOR
-elif [ ${DARK:-0} -eq 0 ]; then
-	export COLORFGBG="0;default;15"
-elif [ ${DARK:-0} -eq 1 ]; then
-	export COLORFGBG="15;default;0"
+else
+# Otherwise we just do our best based on the setting of DARK, defaulting to
+# light on dark, change the :-0 here to :-1 to change the default.
+	if [ ${DARK:-0} -eq 0 ]; then
+		export COLORFGBG="0;default;15"
+	else
+		export COLORFGBG="15;default;0"
+	fi
 fi
 
 # Set the prompt colour, and the colors for the 'ls' command appropriately,
