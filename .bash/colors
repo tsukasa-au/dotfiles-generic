@@ -7,13 +7,13 @@
 # automatically try changing the table below.
 
 # Terminals that we want coloured prompts in
-[ -n "$COLORTERM"           ] && PS1_COLOR=1
-[ "$TERM" = "linux"         ] && PS1_COLOR=1 && DARK=1
-[ "$TERM" = "screen"        ] && PS1_COLOR=1
-[ "$TERM" = "xterm"         ] && PS1_COLOR=1
-[ "$TERM" = "xterm-color"   ] && PS1_COLOR=1
-[ "$TERM" = "rxvt"          ] && PS1_COLOR=1
-[ "$TERM" = "rxvt-unicode"  ] && PS1_COLOR=1
+[ -n "${COLORTERM}"           ] && PS1_COLOR=1
+[ "${TERM}" = "linux"         ] && PS1_COLOR=1 && DARK=1
+[ "${TERM}" = "screen"        ] && PS1_COLOR=1
+[ "${TERM}" = "xterm"         ] && PS1_COLOR=1
+[ "${TERM}" = "xterm-color"   ] && PS1_COLOR=1
+[ "${TERM}" = "rxvt"          ] && PS1_COLOR=1
+[ "${TERM}" = "rxvt-unicode"  ] && PS1_COLOR=1
 
 # Override COLORFGBG (probably used the darkterm or lightterm function
 if [ -n "${DARK}" ]; then
@@ -22,10 +22,10 @@ fi
 
 # If COLORFGBG is set, use it to determine the terminal type, DARK=0 is
 # dark on light, DARK=1 is light on dark.
-if [ -n "$COLORFGBG" ]; then
-	FGCOLOR=$(echo $COLORFGBG | cut -d ';' -f 1)
-	BGCOLOR=$(echo $COLORFGBG | cut -d ';' -f 3)
-	if [ "$FGCOLOR" -gt "$BGCOLOR" ]; then
+if [ -n "${COLORFGBG}" ]; then
+	FGCOLOR=$(echo "${COLORFGBG}" | cut -d ';' -f 1)
+	BGCOLOR=$(echo "${COLORFGBG}" | cut -d ';' -f 3)
+	if [ "${FGCOLOR}" -gt "${BGCOLOR}" ]; then
 		DARK=1
 	fi
 	unset FGCOLOR
