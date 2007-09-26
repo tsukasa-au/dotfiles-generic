@@ -24,7 +24,6 @@ alias la='ls -ha'
 alias  l='ls -halF'
 alias rm='rm -i'
 alias less='less -R'
-alias screen='TERM=xterm screen'
 
 # Bash should check the terminal size after every command terminates
 shopt -s checkwinsize
