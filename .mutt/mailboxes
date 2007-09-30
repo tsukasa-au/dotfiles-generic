@@ -1,0 +1,21 @@
+# vim:ft=muttrc
+
+# Mailbox settings
+set folder="$HOME/Mail/Links";
+set record="=Sent";
+set postponed="=Drafts";
+set spoolfile="=Inbox";
+set mbox="=Received";
+
+# Header caching
+set header_cache="$HOME/.mutt/header_cache"
+
+# Don't confirm when appending to an existing mailbox
+set noconfirmappend
+
+# List of mailboxes to check
+mailboxes =Inbox =Junk
+
+# List of email addresses
+alternates ^me@example.com$ ^me@example.org$
+

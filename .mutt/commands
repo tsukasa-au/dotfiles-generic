@@ -1,0 +1,25 @@
+# vim:ft=muttrc
+
+# Query the address book
+set query_command="lbdbq '%s'"
+
+# Vim for mail editing
+set editor="vim -c 'set tw=78 ft=mail noautoindent nosmartindent'"
+
+# Put messages into the junk folder
+macro index S "<clear-flag>N<clear-flag>O<save-message>=Junk<enter>" "move message to the Junk folder"
+macro pager S "<save-message>=Junk<enter>" "move message to the junk folder"
+
+# Go back to the inbox
+macro index I "<change-folder>=Inbox<enter>" "go back to the inbox"
+macro pager I "<change-folder>=Inbox<enter>" "go back to the inbox"
+# Go to the received mail folter
+macro index R "<change-folder>=Received<enter>" "go to the received mail folder"
+macro pager R "<change-folder>=Received<enter>" "go to the received mail folder"
+
+# Make copying and moving use the file browser by default
+macro index C "<copy-message>?" "copy a message to a mailbox"
+macro index s "<save-message>?" "move a message to a mailbox"
+macro pager C "<copy-message>?" "copy a message to a mailbox"
+macro pager s "<save-message>?" "move a message to a mailbox"
+

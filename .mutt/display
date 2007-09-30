@@ -1,0 +1,37 @@
+# vim:ft=muttrc
+
+# Headers to show
+ignore *
+unignore date from to cc bcc reply-to subject x-mailer x-spam-score
+hdr_order date from to cc bcc reply-to subject x-mailer x-spam-score
+
+# Sort by threads then date received
+set sort=threads
+set sort_aux=date-received
+# When going to the Sent folder, sort by date-sent
+folder-hook . set sort_aux=date-received # And undo
+folder-hook "=Sent" set sort_aux=date-sent # And undo
+
+
+# Hide the help line at the top
+set help=no
+
+# Show 5 lines of index when viewing a message
+set pager_index_lines=5
+
+# Don't scroll past the current message in the pager
+set pager_stop
+
+# Format for messages in the index
+set index_format='%4C %Z %H %{%b %d} %-15.15L %s'
+
+# Format for mailboxes in the browser
+set folder_format="%2C %t %f %> %8s %d "
+
+# Character set stuff
+set charset=utf8
+set noallow_8bit
+
+# Prefer text to HTML
+alternative_order text/enriched text/plain text/html 
+

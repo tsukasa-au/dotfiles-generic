@@ -1,0 +1,29 @@
+# vim:ft=muttrc
+
+# Use custom sendmail?
+#set sendmail="$HOME/bin/sendmail.py"
+
+# Generate a from address using the EMAIL environment variable
+set use_from=yes
+
+# Generate from addresses in replies based on the address that received the mail
+set reverse_name=yes
+
+# Ask about postponing messages
+set postpone=ask-yes
+
+# Always include messages in replies
+set include
+
+# Prefix for quotes in message replies
+set attribution="On %d, %n wrote:"
+
+# Don't ask for address or subject when replying
+set fast_reply
+
+# Forward emails as mime attachments
+set mime_forward
+
+# Subject line for forwarded messages
+set forward_format="Fwd: %s"
+
