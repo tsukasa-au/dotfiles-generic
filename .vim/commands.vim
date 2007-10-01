@@ -12,7 +12,7 @@ nnoremap <C-n> :next<CR>
 nnoremap <C-p> :prev<CR>
 
 " Press CTRL-X after pasting something to fix up formatting
-imap <C-x> <ESC>u:set paste<CR>.:set nopaste<CR>i
+imap <C-z> <ESC>u:set paste<CR>.:set nopaste<CR>i
 
 " Spell checking mode toggle
 function s:spell()
