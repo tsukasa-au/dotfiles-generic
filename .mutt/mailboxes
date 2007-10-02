@@ -10,9 +10,6 @@ set mbox="=Received";
 # Header caching
 set header_cache="$HOME/.mutt/header_cache"
 
-# Don't confirm when appending to an existing mailbox
-set noconfirmappend
-
 # List of mailboxes to check
 mailboxes =Inbox =Junk
 
