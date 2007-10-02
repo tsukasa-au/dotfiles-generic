@@ -10,6 +10,10 @@ set editor="vim -c 'set tw=78 ft=mail noautoindent nosmartindent'"
 macro index S "<clear-flag>N<clear-flag>O<save-message>=Junk<enter>" "move message to the Junk folder"
 macro pager S "<save-message>=Junk<enter>" "move message to the junk folder"
 
+# Make N search backwards
+macro index N "<search-opposite>" "search for next match in opposite direction"
+macro pager N "<search-opposite>" "search for next match in opposite direction"
+
 # Go back to the inbox
 macro index I "<change-folder>=Inbox<enter>" "go back to the inbox"
 macro pager I "<change-folder>=Inbox<enter>" "go back to the inbox"
