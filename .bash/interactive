@@ -17,7 +17,7 @@ xterm*|rxvt*)
 	unset HOSTNAME
 	;;
 screen*)
-	PS1="\033k\033\\\\${PS1}"
+	PS1="\[\033k\033\\\\\]${PS1}"
 	;;
 *)
 	;;

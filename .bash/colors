@@ -80,7 +80,7 @@ if [ ${PS1_COLOR:-0} -eq 1 ]; then
 	fi
 
 	export LS_COLORS
-	unset PS1_COLOR
-	unset DARK
 fi
+unset PS1_COLOR
+unset DARK
 
