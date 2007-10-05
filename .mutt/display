@@ -7,10 +7,10 @@ hdr_order date from to cc bcc reply-to subject x-mailer x-spam-score
 
 # Sort by threads then date received
 set sort=threads
-set sort_aux=date-received
+set sort_aux=last-date-received
 # When going to the Sent folder, sort by date-sent
-folder-hook . set sort_aux=date-received # And undo
-folder-hook "=Sent" set sort_aux=date-sent # And undo
+folder-hook . set sort_aux=last-date-received # And undo
+folder-hook "=Sent" set sort_aux=last-date-sent # And undo
 
 
 # Hide the help line at the top
