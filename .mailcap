@@ -1,0 +1,5 @@
+text/html; elinks -dump %s; copiousoutput
+text/*; cat %s; copiousoutput
+
+image/*; gqview %s
+application/pdf; xpdf %s

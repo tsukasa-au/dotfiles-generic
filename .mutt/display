@@ -32,6 +32,9 @@ set folder_format="%2C %t %f %> %8s %d "
 set charset=utf8
 set noallow_8bit
 
+# Autoview HTML emails
+auto_view text/enriched text/html
+
 # Prefer text to HTML
-alternative_order text/enriched text/plain text/html 
+alternative_order text/enriched text/plain text/html
 
