@@ -11,10 +11,11 @@ function! ToggleCommentify()
 		let commentSymbol = ''
 
 		let commentMapping = {
-					\'###': ['python', 'sh', 'muttrc', 'sshconfig', 'make'], 
-					\'///': ['ox', 'java', 'cpp', 'c', 'php'],	
+					\'###': ['python', 'sh', 'muttrc', 'sshconfig', 'make', 'vrml', 'ruby', 'perl'], 
+					\'///': ['ox', 'java', 'cpp', 'c', 'php', 'javascript'],	
 					\'"""': ['vim'], 
-					\'!!!': ['xdefaults']
+					\'!!!': ['xdefaults'],
+					\'%%%': ['tex']
 				\}
 
 		for commentChar in keys(commentMapping)
