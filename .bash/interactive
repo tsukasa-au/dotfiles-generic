@@ -2,6 +2,9 @@
 
 # Sets up the shell for interactive commands
 
+# Use the terminfo backspace character as the erase character
+stty erase $(tput kbs)
+
 # Prompt: user@host:directory$
 PS1='\u@\h:\w\$ '
 
