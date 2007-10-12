@@ -14,9 +14,6 @@ set nowrap
 " If wordwrap is on, don't split words across lines
 set linebreak
 
-" Don't wrap my lines at 78 chars please!
-set textwidth=0
-
 " String to put at the start of lines that have been wrapped
 "set showbreak=+
 set showbreak=
@@ -41,4 +38,20 @@ map <C-K> <C-W>k<C-W>_
 
 " Always keep one line of context around the cursor
 set scrolloff=1
+
+" Match search results as you type
+set incsearch
+
+" Ignore case when searching
+set ignorecase
+
+" Ignore the ignorecase character if search contains uppercase chars
+set smartcase
+
+" Highlight search terms
+set hlsearch
+
+" Mouse options
+set mouse=a
+set mousehide
 
