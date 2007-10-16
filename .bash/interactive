@@ -4,7 +4,7 @@
 
 # Use the terminfo backspace character as the erase character. This is not
 # enabled by default because terminfo is often broken.
-#stty erase $(tput kbs)
+stty erase $(tput kbs)
 
 # Prompt: user@host:directory$
 PS1='\u@\h:\w\$ '
@@ -21,7 +21,7 @@ xterm*|rxvt*)
 	unset HOSTNAME
 	;;
 screen*)
-	PS1="\[\033k\033\\\\\]${PS1}"
+	PROMPT_COMMAND="echo -ne '\033k\033\\'"
 	;;
 *)
 	;;
