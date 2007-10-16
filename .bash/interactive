@@ -2,8 +2,9 @@
 
 # Sets up the shell for interactive commands
 
-# Use the terminfo backspace character as the erase character
-stty erase $(tput kbs)
+# Use the terminfo backspace character as the erase character. This is not
+# enabled by default because terminfo is often broken.
+#stty erase $(tput kbs)
 
 # Prompt: user@host:directory$
 PS1='\u@\h:\w\$ '
