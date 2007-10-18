@@ -17,18 +17,18 @@ URxvt.color14:  #55FFFF
 URxvt.color15:  #FFFFFF
 
 ! Partial transparency for a dark on light terminal
-URxvt.background: #FFFFFF
-URxvt.foreground: #000000
-URxvt.inheritPixmap: True
-URxvt.tintColor: #000000
-URxvt.shading: -10
+!URxvt.background: #FFFFFF
+!URxvt.foreground: #000000
+!URxvt.inheritPixmap: True
+!URxvt.tintColor: #000000
+!URxvt.shading: -10
 
 ! Partial transparency for a light on dark terminal
-!URxvt.background: #000000
-!URxvt.foreground: #BBBBBB
-!URxvt.inheritPixmap: True
-!URxvt.tintColor: #FFFFFF
-!URxvt.shading: 10
+URxvt.background: #000000
+URxvt.foreground: #BBBBBB
+URxvt.inheritPixmap: True
+URxvt.tintColor: #FFFFFF
+URxvt.shading: 10
 
 
 ! This option sets the TERM environment variable:
