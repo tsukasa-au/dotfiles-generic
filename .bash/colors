@@ -13,12 +13,12 @@
 
 # Set to 0 for light background terminal colours by default
 # Set to 1 for dark background terminal colours by default
-DEFAULTDARK=0
+DEFAULTDARK=1
 
 
 # Terminals that we want coloured prompts in
 [ -n "${COLORTERM}"           ] && PS1_COLOR=1
-[ "${TERM}" = "linux"         ] && PS1_COLOR=1 && DARK=1
+[ "${TERM}" = "linux"         ] && PS1_COLOR=1 && DARK=${DARK:-1}
 [ "${TERM}" = "screen"        ] && PS1_COLOR=1
 [ "${TERM}" = "xterm"         ] && PS1_COLOR=1
 [ "${TERM}" = "xterm-color"   ] && PS1_COLOR=1
