@@ -1,7 +1,7 @@
 # vim:ft=muttrc
 
 # Move read messages from =Inbox to =Received
-set move=ask-yes
+#set move=ask-yes
 
 # Delete messages that have been marked as deleted when leaving a folder
 set delete=ask-yes

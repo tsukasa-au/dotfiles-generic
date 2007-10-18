@@ -15,8 +15,8 @@ macro pager N "<search-opposite>" "search for next match in opposite direction"
 macro index I "<change-folder>=Inbox<enter>" "go back to the inbox"
 macro pager I "<change-folder>=Inbox<enter>" "go back to the inbox"
 # Go to the received mail folter
-macro index R "<change-folder>=Received<enter>" "go to the received mail folder"
-macro pager R "<change-folder>=Received<enter>" "go to the received mail folder"
+###macro index R "<change-folder>=Received<enter>" "go to the received mail folder"
+###macro pager R "<change-folder>=Received<enter>" "go to the received mail folder"
 
 # Make copying and moving use the file browser by default
 macro index C "<copy-message>?" "copy a message to a mailbox"
@@ -24,3 +24,6 @@ macro index s "<save-message>?" "move a message to a mailbox"
 macro pager C "<copy-message>?" "copy a message to a mailbox"
 macro pager s "<save-message>?" "move a message to a mailbox"
 
+# Make up + down work as I expect in the pager
+macro pager <up> "<previous-line>" "move up a line"
+macro pager <down> "<next-line>" "move down a line"

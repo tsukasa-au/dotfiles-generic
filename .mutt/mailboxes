@@ -5,7 +5,7 @@ set folder="$HOME/Mail/Links";
 set record="=Sent";
 set postponed="=Drafts";
 set spoolfile="=Inbox";
-set mbox="=Received";
+set mbox="=Inbox";
 
 # Header caching
 set header_cache="$HOME/.mutt/header_cache"

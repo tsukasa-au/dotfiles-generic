@@ -14,7 +14,7 @@ folder-hook "=Sent" set sort_aux=last-date-sent # And undo
 
 
 # Hide the help line at the top
-set help=no
+#set help=no
 
 # Show 5 lines of index when viewing a message
 set pager_index_lines=5
