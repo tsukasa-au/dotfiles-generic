@@ -1,8 +1,17 @@
 startup_message off
 altscreen on
 shelltitle "$ |bash"
+
 hardstatus alwayslastline                                                                                                                          
-hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+# James' line
+###hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+
+# Greg's line
+# Host | load avg | date time | windows
+hardstatus string '%{bk}%{w} %H %{y}|%{G} %l %{y}|%{W} %d/%m %c %{y}|%{W} %-w%{+u}%n %t%{-u}%+w'
 
 # Uncomment this line on Debian systems to make backspace work correctly
 #bindkey -k kb stuff ^?
+
+# Because nethack is awesome
+nethack on
