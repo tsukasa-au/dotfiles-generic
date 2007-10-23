@@ -63,3 +63,10 @@ URxvt.boldItalicFont: xft:Luxi Mono:pixelsize=14:autohint:antialias=true
 
 ! Double-click selections
 URxvt.cutchars: `"'&()*,;<=>?@[]{|}:$
+
+
+
+! XTerm - undo Debian specific change to backspace keys
+XTerm.backarrowKeyIsErase: false
+XTerm.ptyInitialErase: false
+
