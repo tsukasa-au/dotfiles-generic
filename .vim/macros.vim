@@ -1,6 +1,19 @@
 " Python Calculator
 command! -nargs=+ Calc :r! python -c "from math import *; print <args>"
 
+" I frequently type :Q or :WQ, etc instead of :q, :wq
+command! WQA :wqa
+command! WqA :wqa
+command! WQa :wqa
+command! Wqa :wqa
+command! WA :wa
+command! Wa :wa
+command! WQ :wq
+command! Wq :wq
+command! W :w
+command! QA :wqa
+command! Qa :wqa
+
 " Unhighlight search results
 map <C-l> :nohlsearch<CR>:redraw!<CR>
 
