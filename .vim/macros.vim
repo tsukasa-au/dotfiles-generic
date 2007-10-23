@@ -24,6 +24,10 @@ noremap Y y$
 nnoremap <C-n> :next<CR>
 nnoremap <C-p> :prev<CR>
 
+" CTRL-J/K to move up and down, collapsing open windows
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+
 " Press CTRL-X after pasting something to fix up formatting
 imap <C-z> <ESC>u:set paste<CR>.:set nopaste<CR>i
 
