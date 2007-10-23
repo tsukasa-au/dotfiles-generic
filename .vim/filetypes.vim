@@ -1,5 +1,4 @@
 " Make vim aware of filetypes
-filetype plugin on
 filetype plugin indent on
 
 " Pick up some filetypes from their extensions
