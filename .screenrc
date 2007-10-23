@@ -3,6 +3,3 @@ altscreen on
 shelltitle "$ |bash"
 hardstatus alwayslastline                                                                                                                          
 hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
-
-# Uncomment this line on Debian systems to make backspace work correctly
-#bindkey -k kb stuff ^?
