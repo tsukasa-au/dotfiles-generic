@@ -17,13 +17,9 @@ DEFAULTDARK=1
 
 
 # Terminals that we want coloured prompts in
-[ -n "${COLORTERM}"           ] && PS1_COLOR=1
-[ "${TERM}" = "linux"         ] && PS1_COLOR=1 && DARK=${DARK:-1}
-[ "${TERM}" = "screen"        ] && PS1_COLOR=1
-[ "${TERM}" = "xterm"         ] && PS1_COLOR=1
-[ "${TERM}" = "xterm-color"   ] && PS1_COLOR=1
-[ "${TERM}" = "rxvt"          ] && PS1_COLOR=1
-[ "${TERM}" = "rxvt-unicode"  ] && PS1_COLOR=1
+[ -n "${COLORTERM}"      ] && PS1_COLOR=1
+[ "${TERM}" = "linux"    ] && DARK="${DARK:-1}"
+[ "$(tput colors)" -gt 2 ] && PS1_COLOR=1
 
 # Override COLORFGBG (probably used the darkterm or lightterm function
 if [ -n "${DARK}" ]; then

@@ -1,6 +1,19 @@
 " Python Calculator
 command! -nargs=+ Calc :r! python -c "from math import *; print <args>"
 
+" I frequently type :Q or :WQ, etc instead of :q, :wq
+command! WQA :wqa
+command! WqA :wqa
+command! WQa :wqa
+command! Wqa :wqa
+command! WA :wa
+command! Wa :wa
+command! WQ :wq
+command! Wq :wq
+command! W :w
+command! QA :wqa
+command! Qa :wqa
+
 " Unhighlight search results
 map <C-l> :nohlsearch<CR>:redraw!<CR>
 
@@ -10,6 +23,10 @@ noremap Y y$
 " CTRL-n and CTRL-p to go forwards and backwards through files
 nnoremap <C-n> :next<CR>
 nnoremap <C-p> :prev<CR>
+
+" CTRL-J/K to move up and down, collapsing open windows
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
 
 " Press CTRL-X after pasting something to fix up formatting
 imap <C-z> <ESC>u:set paste<CR>.:set nopaste<CR>i
