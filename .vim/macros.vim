@@ -13,7 +13,7 @@ command! Wq :wq
 command! W :w
 command! QA :qa
 command! Qa :qa
-command! Q :qa
+command! Q :q
 
 " Unhighlight search results
 map <C-l> :nohlsearch<CR>:redraw!<CR>
