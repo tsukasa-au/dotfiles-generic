@@ -11,3 +11,6 @@ autocmd FileType text setlocal textwidth=78 nosmartindent
 autocmd FileType mail setlocal textwidth=78 nosmartindent
 autocmd FileType tex setlocal textwidth=78 nosmartindent
 
+" Don't automatically continue comments on new lines
+"""autocmd BufNewFile,BufRead * setlocal formatoptions-=r
+

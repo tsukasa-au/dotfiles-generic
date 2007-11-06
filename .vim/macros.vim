@@ -11,8 +11,9 @@ command! Wa :wa
 command! WQ :wq
 command! Wq :wq
 command! W :w
-command! QA :wqa
-command! Qa :wqa
+command! QA :qa
+command! Qa :qa
+command! Q :q
 
 " Unhighlight search results
 map <C-l> :nohlsearch<CR>:redraw!<CR>
