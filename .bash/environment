@@ -22,9 +22,9 @@ source "${HOME}/.bash/functions"
 # The current directory shouldn't be in the path
 pathremove .
 
-# Load local environment settings
-ssource "${HOME}/.bash/environment_local"
-
 # ~/bin should be in the front of path if it exists
 pathprepend "${HOME}/bin"
+
+# Load local environment settings
+ssource "${HOME}/.bash/environment_local"
 
