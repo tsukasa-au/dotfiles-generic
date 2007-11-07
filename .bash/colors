@@ -13,7 +13,7 @@
 
 # Set to 0 for light background terminal colours by default
 # Set to 1 for dark background terminal colours by default
-DEFAULTDARK=0
+DEFAULTDARK=1
 
 
 # Terminals that we want coloured prompts in
