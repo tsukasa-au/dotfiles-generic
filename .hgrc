@@ -2,3 +2,7 @@
 fetch =
 convert =
 graphlog =
+extdiff =
+
+[extdiff]
+cmd.vimdiff =
