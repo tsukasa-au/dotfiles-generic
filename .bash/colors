@@ -77,6 +77,9 @@ if [ ${PS1_COLOR:-0} -eq 1 ]; then
 
 	export LS_COLORS
 fi
+
+# Allow 'local' customisation of colours
+ssource colors_local
+
 unset PS1_COLOR
 unset DARK
-
