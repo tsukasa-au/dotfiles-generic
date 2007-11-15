@@ -79,7 +79,7 @@ if [ ${PS1_COLOR:-0} -eq 1 ]; then
 fi
 
 # Allow 'local' customisation of colours
-ssource colors_local
+ssource "${HOME}/.bash/colors_local"
 
 unset PS1_COLOR
 unset DARK
