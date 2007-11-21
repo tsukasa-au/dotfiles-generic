@@ -34,10 +34,14 @@ alias la='ls -ha'
 alias  l='ls -halF'
 alias rm='rm -i'
 alias less='less -R'
+alias grep='grep --color=auto'
 
 # Bash should check the terminal size after every command terminates
 shopt -s checkwinsize
 
 # Local customisations
 ssource "${HOME}/.bash/interactive_local"
+
+# Load bash completion if available
+ssource "/etc/bash_completion"
 
