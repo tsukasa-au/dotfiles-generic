@@ -22,6 +22,10 @@ source "${HOME}/.bash/functions"
 # The current directory shouldn't be in the path
 pathremove .
 
+# I am an admin kinda person... thus I like having access to sbin
+pathappend "/sbin"
+pathappend "/usr/sbin"
+
 # ~/bin should be in the front of path if it exists
 pathprepend "${HOME}/bin"
 
