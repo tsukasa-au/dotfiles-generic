@@ -32,6 +32,9 @@ map <C-K> <C-W>k<C-W>_
 " Press CTRL-X after pasting something to fix up formatting
 imap <C-z> <ESC>u:set paste<CR>.:set nopaste<CR>i
 
+" Tab to switch between split windows
+map <Tab> <C-w><C-w>
+
 " Spell checking mode toggle
 function s:spell()
 	if !exists("s:spell_check") || s:spell_check == 0
