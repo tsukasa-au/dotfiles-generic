@@ -6,8 +6,8 @@
 # enabled by default because terminfo is often broken.
 #stty erase $(tput kbs)
 
-# Prompt: user@host:directory$
-PS1='\u@\h:\w\$ '
+# Prompt: user@host:(chroot)directory$
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
 # The all important colours!
 ssource "${HOME}/.bash/colors"

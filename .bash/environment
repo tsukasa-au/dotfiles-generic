@@ -26,9 +26,13 @@ pathremove .
 pathappend "/sbin"
 pathappend "/usr/sbin"
 
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+       debian_chroot=$(cat /etc/debian_chroot)
+fi
+
 # ~/bin should be in the front of path if it exists
 pathprepend "${HOME}/bin"
 
 # Load local environment settings
 ssource "${HOME}/.bash/environment_local"
-

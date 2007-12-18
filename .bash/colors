@@ -64,7 +64,7 @@ fi
 # depending on the background of the terminal.
 if [ ${PS1_COLOR:-0} -eq 1 ]; then
 	eval $(dircolors 2> /dev/null)
-	PS1='\[\033[00;31m\]\u@\h\[\033[00m\]:\[\033[00;34m\]\w\[\033[00m\]\$ '
+	PS1='\[\033[00;35m\]${debian_chroot:+($debian_chroot)}\[\033[00;31m\]\u@\h\[\033[00m\]:\[\033[00;34m\]\w\[\033[00m\]\$ '
 
 	if [ ${DARK} -eq 0 ]; then
 		LS_COLORS="$(echo "${LS_COLORS}" | sed 's/01;/00;/g')"
