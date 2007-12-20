@@ -8,7 +8,7 @@
 # Usage: pathremove /path/to/bin [PATH]
 # Eg, to remove ~/bin from $PATH
 #     pathremove ~/bin PATH
-pathremove() {
+function pathremove {
 	local IFS=':'
 	local NEWPATH
 	local DIR
@@ -24,7 +24,7 @@ pathremove() {
 # Usage: pathprepend /path/to/bin [PATH]
 # Eg, to prepend ~/bin to $PATH
 #     pathprepend ~/bin PATH
-pathprepend() {
+function pathprepend {
 	pathremove "${1}" "${2}"
 	[ -d "${1}" ] || return
 	local PATHVARIABLE="${2:-PATH}"
@@ -34,7 +34,7 @@ pathprepend() {
 # Usage: pathappend /path/to/bin [PATH]
 # Eg, to append ~/bin to $PATH
 #     pathappend ~/bin PATH
-pathappend() {
+function pathappend {
 	pathremove "${1}" "${2}"
 	[ -d "${1}" ] || return
 	local PATHVARIABLE=${2:-PATH}
@@ -43,25 +43,25 @@ pathappend() {
 
 # Usage: ssource /path/to/shellscript
 # Checks if the file exists before sourcing it
-ssource() {
+function ssource {
 	[ -r "${1}" ] && source "${1}"
 }
 
 # Sets colours to be appropriate for a light on dark terminal
-darkterm() {
+function darkterm {
 	DARK=1
 	source "${HOME}/.bash/colors"
 }
 
 # Sets the colours to be appropriate for a dark on light terminal
-lightterm() {
+function lightterm {
 	DARK=0
 	source "${HOME}/.bash/colors"
 }
 
 # Usage: mcd somedir
 # Creates the directory if it doesn't exist, and changes into it
-mcd() {
+function mcd {
 	mkdir -p "${1}" &&
 	cd "${1}"
 }
