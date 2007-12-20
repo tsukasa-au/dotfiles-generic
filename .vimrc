@@ -15,4 +15,7 @@ if !filereadable(expand("~/.vim/abbrsout.vim"))
 	!python ~/.vim/abbrs2vim.py
 endif
 source ~/.vim/abbrsout.vim
+if filereadable(expand("~/.vim/local.vim"))
+	source ~/.vim/local.vim
+endif
 
