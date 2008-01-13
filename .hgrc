@@ -3,6 +3,7 @@ fetch =
 convert =
 graphlog =
 extdiff =
+imerge =
 
 [extdiff]
 cmd.vimdiff =
