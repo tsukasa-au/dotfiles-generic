@@ -1,5 +1,6 @@
 .mutt/header_cache
 .vim/abbrsout.vim
+.vim/local.vim
 .vim/viminfo
 .ssh/identity
 .ssh/identity.pub
