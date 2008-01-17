@@ -11,6 +11,10 @@ command! Wa :wa
 command! WQ :wq
 command! Wq :wq
 command! W :w
+command! Wn :wn
+command! WN :wn
+command! Wp :wp
+command! WP :wp
 command! QA :qa
 command! Qa :qa
 command! Q :q
