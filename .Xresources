@@ -31,17 +31,13 @@ URxvt.shading: -10
 !URxvt.shading: 10
 
 
-! This option sets the TERM environment variable:
-! TERM=rxvt-unicode won't work because systems don't have a terminfo file for
-! TERM=xterm because different systems have inconsistent terminfo files for it
-!            (differing ideas about what xterm sends as backspace)
-! TERM=xterm-color works well with the few key fixes below
-URxvt.termName: xterm-color
+! This option sets the TERM environment variable to xterm
+URxvt.termName: xterm
 
-! Make the keys behave like the xterm-color terminfo says they should
+! Make the keys behave like the xterm terminfo says they should
 URxvt.keysym.Home: \033[1~
 URxvt.keysym.End: \033[4~
-URxvt.backspacekey: ^H
+URxvt.backspacekey: ^?
 URxvt.deletekey: \033[3~
 
 ! Scrollback buffer
@@ -64,9 +60,4 @@ URxvt.boldItalicFont: xft:Luxi Mono:pixelsize=14:autohint:antialias=true
 ! Double-click selections
 URxvt.cutchars: `"'&()*,;<=>?@[]{|}:$
 
-
-
-! XTerm - undo Debian specific change to backspace keys
-XTerm.backarrowKeyIsErase: false
-XTerm.ptyInitialErase: false
 
