@@ -13,5 +13,7 @@ hardstatus string '%{bk}%{w} %H %{y}|%{G} %l %{y}|%{W} %d/%m %c %{y}|%{W} %-w%{+
 # Uncomment this line on Debian systems to make backspace work correctly
 #bindkey -k kb stuff ^?
 
+# Always send backspace as ^?, which is consistent with the bundled terminfo
+bindkey -k kb stuff ^?
 # Because nethack is awesome
 nethack on
