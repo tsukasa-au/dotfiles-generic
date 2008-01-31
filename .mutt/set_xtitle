@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Demonstration of format string pipes. Sets the xterm title and returns the
 # string unchanged.
 #
