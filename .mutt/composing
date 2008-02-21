@@ -9,8 +9,8 @@ set use_from=yes
 # Generate from addresses in replies based on the address that received the mail
 set reverse_name=yes
 
-# Ask about postponing messages
-set postpone=ask-yes
+# Postpone messages without asking first
+set postpone=yes
 
 # Always include messages in replies
 set include
@@ -20,6 +20,9 @@ set attribution="On %d, %n wrote:"
 
 # Don't ask for address or subject when replying
 set fast_reply
+
+# Don't ask for confirmation when a Reply-To header is set
+set reply_to=yes
 
 # Forward emails as mime attachments
 set mime_forward
