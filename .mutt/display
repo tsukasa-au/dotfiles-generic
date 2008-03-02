@@ -2,8 +2,8 @@
 
 # Headers to show
 ignore *
-unignore date from to cc bcc reply-to subject x-mailer x-spam-score
-hdr_order date from to cc bcc reply-to subject x-mailer x-spam-score
+unignore date return-path from to cc bcc reply-to subject x-mailer x-spam-score
+hdr_order date return-path from to cc bcc reply-to subject x-mailer x-spam-score
 
 # Sort by threads then date received
 set sort=threads
