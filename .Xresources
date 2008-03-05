@@ -37,7 +37,7 @@ URxvt.termName: xterm
 ! Make the keys behave like the xterm terminfo says they should
 URxvt.keysym.Home: \033OH
 URxvt.keysym.End: \033OF
-URxvt.backspacekey: ^?
+URxvt.backspacekey: 
 URxvt.deletekey: \033[3~
 
 ! Scrollback buffer
