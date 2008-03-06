@@ -21,7 +21,7 @@ URxvt.background: #FFFFFF
 URxvt.foreground: #000000
 URxvt.inheritPixmap: True
 URxvt.tintColor: #000000
-URxvt.shading: -10
+URxvt.shading: 190
 
 ! Partial transparency for a light on dark terminal
 !URxvt.background: #000000
@@ -37,7 +37,7 @@ URxvt.termName: xterm
 ! Make the keys behave like the xterm terminfo says they should
 URxvt.keysym.Home: \033OH
 URxvt.keysym.End: \033OF
-URxvt.backspacekey: 
+URxvt.backspacekey: \127
 URxvt.deletekey: \033[3~
 
 ! Scrollback buffer
