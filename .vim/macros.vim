@@ -39,6 +39,9 @@ imap <C-z> <ESC>u:set paste<CR>.:set nopaste<CR>i
 " Tab to switch between split windows
 map <Tab> <C-w><C-w>
 
+" Q to reformat paragraph. I never use ex mode anyway (default binding for Q)
+map Q gwip
+
 " Spell checking mode toggle
 function s:spell()
 	if !exists("s:spell_check") || s:spell_check == 0
