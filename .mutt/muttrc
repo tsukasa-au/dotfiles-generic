@@ -2,6 +2,7 @@
 
 # Source other bits of config
 source "$HOME/.mutt/mailboxes"
+source "$HOME/.mutt/crypto"
 source "$HOME/.mutt/colors"
 source "$HOME/.mutt/macros"
 source "$HOME/.mutt/composing"
