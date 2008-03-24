@@ -6,8 +6,14 @@
 # enabled by default because terminfo is often broken.
 #stty erase $(tput kbs)
 
+# The contents of /etc/debian_chroot will be printed in the prompt. You can
+# create this file in chroot environments to know where you are.
+if [ -z "$debian_chroot" -a -r /etc/debian_chroot ]; then
+	debian_chroot=$(cat /etc/debian_chroot)
+fi
+
 # Prompt: user@host:directory$
-PS1='\u@\h:\w\$ '
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
 # The all important colours!
 ssource "${HOME}/.bash/colors"
