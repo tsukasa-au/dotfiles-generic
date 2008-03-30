@@ -7,6 +7,7 @@ macro pager <Esc>j "<save-message>=Junk<enter>" "move message to the junk folder
 # Make N search backwards
 macro index N "<search-opposite>" "search for next match in opposite direction"
 macro pager N "<search-opposite>" "search for next match in opposite direction"
+macro alias N "<search-opposite>" "search for next match in opposite direction"
 
 # Go back to the inbox
 macro index I "<change-folder>=Inbox<enter>" "go back to the inbox"
