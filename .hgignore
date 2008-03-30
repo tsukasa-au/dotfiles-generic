@@ -1,3 +1,4 @@
+.mutt/aliases
 .mutt/header_cache
 .vim/abbrsout.vim
 .vim/local.vim
