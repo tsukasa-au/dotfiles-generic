@@ -31,6 +31,9 @@ set index_format='%4C %Z %H %{%b %d} %-15.15L %s'
 # Format for mailboxes in the browser
 set folder_format="%2C %t %f %> %8s %d "
 
+# Format for aliases in the tab-complete view
+set alias_format="%4n %2f %t %r"
+
 # Character set stuff
 set charset=utf8
 set noallow_8bit
