@@ -14,8 +14,8 @@ autocmd BufNewFile,BufRead *.tex setlocal ft=tex
 autocmd FileType text setlocal wrap
 autocmd FileType bib setlocal textwidth=78 nocindent smartindent
 autocmd FileType mail setlocal textwidth=78
-autocmd FileType tex setlocal wrap showbreak=>\ \ \ \ \ \ \  
-autocmd FileType objc setlocal textwidth=78 nocindent smartindent
+autocmd FileType tex setlocal wrap
+autocmd FileType objc setlocal nocindent smartindent
 
 " Don't automatically continue comments on new lines
 """autocmd BufNewFile,BufRead * setlocal formatoptions-=r
