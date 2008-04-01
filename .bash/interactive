@@ -13,7 +13,7 @@ if [ -z "$debian_chroot" -a -r /etc/debian_chroot ]; then
 fi
 
 # Prompt: user@host:directory$
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
 
 # The all important colours!
 ssource "${HOME}/.bash/colors"
