@@ -36,3 +36,6 @@ pathprepend "${HOME}/bin"
 
 # Load local environment settings
 ssource "${HOME}/.bash/environment_local"
+
+# Really ensure that ~/bin is at the front of the path (if it exists)
+pathprepend "${HOME}/bin"
