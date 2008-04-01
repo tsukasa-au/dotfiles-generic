@@ -1,4 +1,8 @@
-" Make vim aware of filetypes
+" Make vim aware of filetypes, this loads files in
+" vimdir/{ftplugin,indent}/lang.vim 
+" where vimdir is /usr/share/vim/vimXX/ or ~/.vim/
+" The intention is for vim to set up sensible indentation rules and other
+" settings depending on the filetype. 
 filetype plugin indent on
 
 " Pick up some filetypes from their extensions
@@ -6,10 +10,12 @@ autocmd BufNewFile,BufRead *.txt setlocal ft=text
 autocmd BufNewFile,BufRead mutt* setlocal ft=mail
 autocmd BufNewFile,BufRead *.tex setlocal ft=tex
 
-" Set options based on filetypes
-autocmd FileType text setlocal textwidth=78 nosmartindent
-autocmd FileType mail setlocal textwidth=78 nosmartindent
-autocmd FileType tex setlocal textwidth=78 nosmartindent
+" Set options based on filetypes, overriding the filetype plugin/indent options
+autocmd FileType text setlocal wrap
+autocmd FileType bib setlocal textwidth=78 nocindent smartindent
+autocmd FileType mail setlocal textwidth=78
+autocmd FileType tex setlocal wrap
+autocmd FileType objc setlocal nocindent smartindent
 
 " Don't automatically continue comments on new lines
 """autocmd BufNewFile,BufRead * setlocal formatoptions-=r

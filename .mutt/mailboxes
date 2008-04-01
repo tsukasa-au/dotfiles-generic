@@ -1,7 +1,7 @@
 # vim:ft=muttrc
 
 # Mailbox settings
-set folder="$HOME/Mail/Links";
+set folder="$HOME/Mail";
 set record="=Sent";
 set postponed="=Drafts";
 set spoolfile="=Inbox";
@@ -10,7 +10,7 @@ set mbox="=Inbox";
 # Header caching
 set header_cache="$HOME/.mutt/header_cache"
 
-# List of mailboxes to check
+# List of mailboxes
 mailboxes =Inbox =Junk
 
 # List of email addresses

@@ -38,6 +38,8 @@ alias grep='grep --color=auto'
 
 # Bash should check the terminal size after every command terminates
 shopt -s checkwinsize
+# Don't attempt to tab-complete an empty line
+shopt -s no_empty_cmd_completion
 
 # Local customisations
 ssource "${HOME}/.bash/interactive_local"

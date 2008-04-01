@@ -2,8 +2,8 @@
 
 # Headers to show
 ignore *
-unignore date from to cc bcc reply-to subject x-mailer x-spam-score
-hdr_order date from to cc bcc reply-to subject x-mailer x-spam-score
+unignore date return-path from to cc bcc reply-to subject user-agent x-mailer x-spam-score
+hdr_order date return-path from to cc bcc reply-to subject user-agent x-mailer x-spam-score
 
 # Sort by threads then date received
 set sort=threads
@@ -31,9 +31,15 @@ set index_format='%4C %Z %H %{%b %d} %-15.15L %s'
 # Format for mailboxes in the browser
 set folder_format="%2C %t %f %> %8s %d "
 
+# Format for aliases in the tab-complete view
+set alias_format="%4n %2f %t %r"
+
 # Character set stuff
 set charset=utf8
 set noallow_8bit
+
+# Use the alias list to look up real names for people
+set reverse_alias=yes
 
 # Autoview HTML emails
 auto_view text/enriched text/html
