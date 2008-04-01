@@ -20,27 +20,33 @@ command! Qa :qa
 command! Q :q
 
 " Unhighlight search results
-map <C-l> :nohlsearch<CR>:redraw!<CR>
+nmap <C-l> :nohlsearch<CR>:redraw!<CR>
 
 " Map Y to be consistent with D, C, etc
-noremap Y y$
+nmap Y y$
 
 " CTRL-n and CTRL-p to go forwards and backwards through files
-nnoremap <C-n> :next<CR>
-nnoremap <C-p> :prev<CR>
+nmap <C-n> :next<CR>
+nmap <C-p> :prev<CR>
 
 " CTRL-J/K to move up and down, collapsing open windows
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 
-" Press CTRL-X after pasting something to fix up formatting
+" Press CTRL-z after pasting something to fix up formatting
 imap <C-z> <ESC>u:set paste<CR>.:set nopaste<CR>i
 
 " Tab to switch between split windows
-map <Tab> <C-w><C-w>
+nmap <Tab> <C-w><C-w>
 
 " Q to reformat paragraph. I never use ex mode anyway (default binding for Q)
-map Q gwip
+nmap Q gwip
+
+" Go up and down by display lines, not linebreaks
+imap <Down> <C-o>gj
+imap <Up> <C-o>gk
+nmap <Down> gj
+nmap <Up> gk
 
 " Spell checking mode toggle
 function s:spell()
