@@ -47,6 +47,11 @@ imap <Down> <C-o>gj
 imap <Up> <C-o>gk
 nmap <Down> gj
 nmap <Up> gk
+nmap 0 g0
+nmap ^ g^
+nmap $ g$
+" Allow backspace, space, left/right keys to move across lines
+set whichwrap=b,s,<,>,[,]
 
 " Spell checking mode toggle
 function s:spell()
