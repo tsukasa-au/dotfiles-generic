@@ -21,7 +21,7 @@ URxvt.color15:  #FFFFFF
 !URxvt.foreground: #000000
 !URxvt.inheritPixmap: True
 !URxvt.tintColor: #000000
-!URxvt.shading: -10
+!URxvt.shading: 190
 
 ! Partial transparency for a light on dark terminal
 URxvt.background: #000000
