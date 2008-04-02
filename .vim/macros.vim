@@ -43,10 +43,14 @@ nmap <Tab> <C-w><C-w>
 nmap Q gwip
 
 " Go up and down by display lines, not linebreaks
+imap <End> <C-o>g$
+imap <Home> <C-o>g0
 imap <Down> <C-o>gj
 imap <Up> <C-o>gk
 nmap <Down> gj
 nmap <Up> gk
+nmap <End> g$
+nmap <Home> g0
 nmap 0 g0
 nmap ^ g^
 nmap $ g$
