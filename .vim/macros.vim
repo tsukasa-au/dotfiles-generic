@@ -60,17 +60,17 @@ imap <F10> <C-o>:call WrapToggle()<CR>
 function WrapOff()
 	setlocal nowrap
 	" Go up and down by physical linebreaks when not wordwrapped
-	iunmap <End>
-	iunmap <Home>
-	iunmap <Down>
-	iunmap <Up>
-	nunmap <Down>
-	nunmap <Up>
-	nunmap <End>
-	nunmap <Home>
-	nunmap 0
-	nunmap ^
-	nunmap $
+	iunmap <buffer> <End>
+	iunmap <buffer> <Home>
+	iunmap <buffer> <Down>
+	iunmap <buffer> <Up>
+	nunmap <buffer> <Down>
+	nunmap <buffer> <Up>
+	nunmap <buffer> <End>
+	nunmap <buffer> <Home>
+	nunmap <buffer> 0
+	nunmap <buffer> ^
+	nunmap <buffer> $
 	" Allow only backspace & space
 	set whichwrap=b,s
 endfunction
