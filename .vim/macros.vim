@@ -42,23 +42,76 @@ nmap <Tab> <C-w><C-w>
 " Q to reformat paragraph. I never use ex mode anyway (default binding for Q)
 nmap Q gwip
 
-" Go up and down by display lines, not linebreaks
-imap <End> <C-o>g$
-imap <Home> <C-o>g0
-imap <Down> <C-o>gj
-imap <Up> <C-o>gk
-nmap <Down> gj
-nmap <Up> gk
-nmap <End> g$
-nmap <Home> g0
-nmap 0 g0
-nmap ^ g^
-nmap $ g$
-" Allow backspace, space, left/right keys to move across lines
-set whichwrap=b,s,<,>,[,]
+
+" Toggle wordwrap
+function WrapToggle()
+	if &wrap
+		call WrapOff()
+		echo "Word wrap off"
+	else
+		call WrapOn()
+		echo "Word wrap on"
+	endif
+endfunction
+map <F10> :call WrapToggle()<CR>
+imap <F10> <C-o>:call WrapToggle()<CR>
+
+" Turn word wrap off, reset arrows, home, end, etc to default bindings
+function WrapOff()
+	setlocal nowrap
+	" Go up and down by physical linebreaks when not wordwrapped
+	iunmap <End>
+	iunmap <Home>
+	iunmap <Down>
+	iunmap <Up>
+	nunmap <Down>
+	nunmap <Up>
+	nunmap <End>
+	nunmap <Home>
+	nunmap 0
+	nunmap ^
+	nunmap $
+	" Allow only backspace & space
+	set whichwrap=b,s
+endfunction
+
+" Turn word wrapping on and bind arrows, home, end, etc to display lines
+function WrapOn()
+	setlocal wrap
+	" Go up and down by display lines, not linebreaks when wordwrapped
+	imap <buffer> <End> <C-o>g$
+	imap <buffer> <Home> <C-o>g0
+	imap <buffer> <Down> <C-o>gj
+	imap <buffer> <Up> <C-o>gk
+	nmap <buffer> <Down> gj
+	nmap <buffer> <Up> gk
+	nmap <buffer> <End> g$
+	nmap <buffer> <Home> g0
+	nmap <buffer> 0 g0
+	nmap <buffer> ^ g^
+	nmap <buffer> $ g$
+	" Allow backspace, space, left/right keys to move across lines
+	set whichwrap=b,s,<,>,[,]
+endfunction
+
+
+" Toggle show invisible characters
+function InvShow()
+	if &list
+		echo  "Invisible characters off"
+		set nolist
+	else
+		echo "Invisible characters on"
+		set listchars=tab:.\ ,trail:!
+		set list
+	endif
+endfunction
+map <F9> :call InvShow()<CR>
+imap <F9> <C-o>:call InvShow()<CR>
+
 
 " Spell checking mode toggle
-function s:spell()
+function ToggleSpelling()
 	if !exists("s:spell_check") || s:spell_check == 0
 		echo  "Spell check on"
 		let s:spell_check = 1
@@ -69,6 +122,6 @@ function s:spell()
 		setlocal spell spelllang=
 	endif
 endfunction
-map <F8> :call <SID>spell()<CR>
-imap <F8> <C-o>:call <SID>spell()<CR>
+map <F8> :call ToggleSpelling()<CR>
+imap <F8> <C-o>:call ToggleSpelling()<CR>
 

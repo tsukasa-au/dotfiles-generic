@@ -11,10 +11,10 @@ autocmd BufNewFile,BufRead mutt* setlocal ft=mail
 autocmd BufNewFile,BufRead *.tex setlocal ft=tex
 
 " Set options based on filetypes, overriding the filetype plugin/indent options
-autocmd FileType text setlocal wrap
+autocmd FileType text call WrapOn()
 autocmd FileType bib setlocal textwidth=78 nocindent smartindent
 autocmd FileType mail setlocal textwidth=78
-autocmd FileType tex setlocal wrap
+autocmd FileType tex call WrapOn()
 autocmd FileType objc setlocal nocindent smartindent
 
 " Don't automatically continue comments on new lines
