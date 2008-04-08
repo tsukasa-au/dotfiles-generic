@@ -10,6 +10,10 @@ set mbox="=Inbox";
 # Header caching
 set header_cache="$HOME/.mutt/header_cache"
 
+# Speed up the loading of folders.
+# Note: If you have *ANY* programs that modify the maildir behind your back, disable this
+set maildir_header_cache_verify=no
+
 # List of mailboxes
 mailboxes =Inbox =Junk
 
