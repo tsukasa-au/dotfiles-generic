@@ -10,10 +10,10 @@ color message brightred default
 color index magenta default ~F
 color index red default "~N|~O"
 color tree default default
-color indicator brightyellow red
+color indicator default red
 
 # Pager colours
-color hdrdefault blue default
+color hdrdefault yellow default
 color signature red default
 color attachment red default
 color markers red default
