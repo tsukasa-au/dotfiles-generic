@@ -4,19 +4,21 @@
 set query_command="lbdbq '%s'"
 
 # Put messages into the junk folder
-macro index S "<clear-flag>N<clear-flag>O<save-message>=Junk<enter>" "move message to the Junk folder"
-macro pager S "<save-message>=Junk<enter>" "move message to the junk folder"
+macro index <Esc>j "<select-entry><save-message>=Junk<enter>" "move message to the Junk folder"
+macro pager <Esc>j "<save-message>=Junk<enter>" "move message to the junk folder"
+
+# Convenient limits
+###macro index I "<limit>~F | ~N | ~O<enter>" "limit display to important messages"
+###macro index A "<limit>all<enter>" "limit display to flagged or new"
 
 # Make N search backwards
 macro index N "<search-opposite>" "search for next match in opposite direction"
 macro pager N "<search-opposite>" "search for next match in opposite direction"
+macro alias N "<search-opposite>" "search for next match in opposite direction"
 
 # Go back to the inbox
 macro index I "<change-folder>=Inbox<enter>" "go back to the inbox"
 macro pager I "<change-folder>=Inbox<enter>" "go back to the inbox"
-# Go to the received mail folter
-###macro index R "<change-folder>=Received<enter>" "go to the received mail folder"
-###macro pager R "<change-folder>=Received<enter>" "go to the received mail folder"
 
 # Make copying and moving use the file browser by default
 macro index C "<copy-message>?" "copy a message to a mailbox"
