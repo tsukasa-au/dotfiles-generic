@@ -55,5 +55,8 @@ auto_view text/enriched text/html
 # Prefer text to HTML
 alternative_order text/enriched text/plain text/html
 
+# Enable mutt to use mime attachments from broken clients (Outlook/etc)
+mime_lookup application/octet-stream
+
 # Collapse all threads (except thread with unread mails)
 unset collapse_unread
