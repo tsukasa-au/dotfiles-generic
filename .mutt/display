@@ -8,10 +8,13 @@ hdr_order date return-path from to cc bcc reply-to subject user-agent x-mailer x
 # Sort by threads then date received
 set sort=threads
 set sort_aux=last-date-received
+
 # When going to the Sent folder, sort by date-sent
 folder-hook . set sort_aux=last-date-received # And undo
 folder-hook "=Sent" set sort_aux=last-date-sent # And undo
 
+# When going to the Inbox only show new & flagged messages
+folder-hook "=Inbox" 'push "<limit>~F | ~N | ~O<enter>"'
 
 # Hide the help line at the top
 #set help=no
