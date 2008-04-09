@@ -4,6 +4,10 @@
 macro index <Esc>j "<select-entry><save-message>=Junk<enter>" "move message to the Junk folder"
 macro pager <Esc>j "<save-message>=Junk<enter>" "move message to the junk folder"
 
+# Jump to inbox
+macro index i "<change-folder>=Inbox<enter>" "go back to the inbox"
+macro pager i "<change-folder>=Inbox<enter>" "go back to the inbox"
+
 # Convenient limits
 macro index I "<limit>~F | ~(~N | ~O)<enter>" "limit display to important messages"
 macro index A "<limit>all<enter>" "limit display to flagged or new"
