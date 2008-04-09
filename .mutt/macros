@@ -10,7 +10,7 @@ macro pager i "<change-folder>=Inbox<enter>" "go back to the inbox"
 
 # Convenient limits
 macro index I "<limit>~F | ~(~N | ~O)<enter>" "limit display to important messages"
-macro index A "<limit>all<enter>" "limit display to flagged or new"
+macro index A "<limit>all<enter>" "disable limit"
 
 # Make N search backwards
 macro index N "<search-opposite>" "search for next match in opposite direction"
