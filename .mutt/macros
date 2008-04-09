@@ -5,7 +5,7 @@ macro index <Esc>j "<select-entry><save-message>=Junk<enter>" "move message to t
 macro pager <Esc>j "<save-message>=Junk<enter>" "move message to the junk folder"
 
 # Convenient limits
-macro index I "<limit>~F | ~N | ~O<enter>" "limit display to important messages"
+macro index I "<limit>~F | ~(~N | ~O)<enter>" "limit display to important messages"
 macro index A "<limit>all<enter>" "limit display to flagged or new"
 
 # Make N search backwards

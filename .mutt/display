@@ -14,7 +14,7 @@ folder-hook . set sort_aux=last-date-received # And undo
 folder-hook "=Sent" set sort_aux=last-date-sent # And undo
 
 # When going to the Inbox only show new & flagged messages
-folder-hook "=Inbox" 'push "<limit>~F | ~N | ~O<enter>"'
+folder-hook "=Inbox" 'push "<limit>~F | ~(~N | ~O)<enter>"'
 
 # Hide the help line at the top
 set help=no
