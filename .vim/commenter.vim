@@ -11,7 +11,7 @@ function! ToggleCommentify()
 		let commentSymbol = ''
 
 		let commentMapping = {
-					\'###': ['python', 'sh', 'muttrc', 'sshconfig', 'make', 'vrml', 'ruby', 'perl'],
+					\'###': ['python', 'sh', 'muttrc', 'sshconfig', 'make', 'vrml', 'ruby', 'perl', 'terminfo', 'conf', 'mplayerconf', 'procmail', 'readline', 'screen', 'sudoers'],
 					\'///': ['ox', 'java', 'cpp', 'c', 'objc', 'php', 'javascript'],
 					\'"""': ['vim'],
 					\'!!!': ['xdefaults'],
