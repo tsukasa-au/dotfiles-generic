@@ -63,7 +63,7 @@ fi
 # Set the prompt colour, and the colors for the 'ls' command appropriately,
 # depending on the background of the terminal.
 if [ ${PS1_COLOR:-0} -eq 1 ]; then
-	eval $(dircolors 2> /dev/null)
+	eval $(TERM=xterm dircolors 2> /dev/null)
 	PS1='${debian_chroot:+($debian_chroot)}\[\033[00;31m\]\u@\h\[\033[00m\]:\[\033[00;34m\]\w\[\033[00m\]\n\$ '
 
 	if [ ${DARK} -eq 0 ]; then
