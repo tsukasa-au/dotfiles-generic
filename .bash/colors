@@ -63,15 +63,17 @@ fi
 # Set the prompt colour, and the colors for the 'ls' command appropriately,
 # depending on the background of the terminal.
 if [ ${PS1_COLOR:-0} -eq 1 ]; then
-	eval $(dircolors 2> /dev/null)
+	eval $(TERM=xterm dircolors 2> /dev/null)
 	PS1='\[\033[00;35m\]${debian_chroot:+($debian_chroot)}\[\033[00;31m\]\u@\h\[\033[00m\]:\[\033[00;34m\]\w\[\033[00m\]\$ '
 
 	if [ ${DARK} -eq 0 ]; then
 		LS_COLORS="$(echo "${LS_COLORS}" | sed 's/01;/00;/g')"
+		LSCOLORS="exfxcxdxbxegedabagacad" # BSD ls
 	else
 		# We need to bold the LS_COLORS and PS1 environment variables
 		# so they show up on a dark terminal
 		LS_COLORS="$(echo "${LS_COLORS}" | sed 's/00;/01;/g')"
+		LSCOLORS="ExFxCxDxBxEGEDABAGACAD" # BSD ls
 		PS1="$(echo "${PS1}" | sed 's/00;/01;/g')"
 	fi
 

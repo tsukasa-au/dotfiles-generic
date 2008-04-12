@@ -53,3 +53,8 @@ set hlsearch
 set mouse=a
 set mousehide
 
+" Mouse support detection
+if strpart(&ttytype, 0, 14) == 'xterm-itermapp' || strpart(&ttytype, 0, 6) == 'screen'
+	set ttymouse=xterm2
+endif
+

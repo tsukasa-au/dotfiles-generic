@@ -12,8 +12,8 @@ function! ToggleCommentify()
 
 		let commentMapping = {
 					\'###': ['python', 'sh', 'muttrc', 'sshconfig', 'make', 'vrml', 'ruby', 'perl', 'screen',
-						\'mplayerconf'], 
-					\'///': ['ox', 'java', 'cpp', 'c', 'php', 'objc', 'javascript'],	
+						\'mplayerconf'],
+					\'///': ['ox', 'java', 'cpp', 'c', 'objc', 'php', 'javascript'],
 					\'"""': ['vim'],
 					\'!!!': ['xdefaults'],
 					\'%%%': ['tex']
