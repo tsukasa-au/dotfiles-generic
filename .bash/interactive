@@ -18,18 +18,19 @@ PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
 # The all important colours!
 ssource "${HOME}/.bash/colors"
 
-# xterm titlebar displays current command
+# xterm titlebar displays 'hostname:workingdir'
 case "${TERM}" in
-xterm*|rxvt*)
+xterm*|rxvt*|screen*)
 	HOSTNAME="$(hostname | cut -d '.' -f 1)"
-	CWD_WITHHOME='"$(echo "${PWD}" | sed "s|^${HOME}|~|")"'
-	PROMPT_COMMAND="echo -ne \"\033]0;${HOSTNAME}: ${CWD_WITHHOME}\007\""
+	PROMPT_COMMAND="echo -ne \"\033]0;${HOSTNAME}: \${PWD/\$HOME/~}\007\""
 	unset HOSTNAME
 	;;
+esac
+
+# screen window displays current command
+case "${TERM}" in
 screen*)
-	PROMPT_COMMAND="echo -ne '\033k\033\\'"
-	;;
-*)
+	PROMPT_COMMAND="$PROMPT_COMMAND ; echo -ne '\033k\033\\'"
 	;;
 esac
 
