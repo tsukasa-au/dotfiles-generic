@@ -26,7 +26,7 @@ set pager_index_lines=5
 set pager_stop
 
 # Format for the status bar
-set status_format="$HOME/.mutt/set_xtitle 'Mutt: [Unread:%u Inc:%b] %f@%h' '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?u? Unread:%u?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? %l?]-%>-(%P)---'|"
+set status_format="$HOME/.mutt/set_xtitle '[Unread:%u Inc:%b] %f@%h - Mutt' '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?u? Unread:%u?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? %l?]-%>-(%P)---'|"
 
 # Format for messages in the index
 set index_format='%4C %Z %H %{%b %d} %-15.15L %s'
