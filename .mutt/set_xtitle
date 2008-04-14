@@ -1,20 +1,22 @@
 #!/usr/bin/env bash
-# Demonstration of format string pipes. Sets the xterm title and returns the
-# string unchanged.
-#
 # Example usage:
-# set status_format="mutt_xtitle '%r %f (%L) [Msgs:%?M?%M/?%m%?n? New:%n?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?]'|"
+# set status_format="mutt_xtitle 'xterm titlebar fmt' 'mutt status fmt'|"
 
-if [ "$TERM" == "xterm" ]; then
-	# Set the xterm title
-	echo -en "\033]0;$1\007" > /dev/tty
-elif [ "$TERM" == "screen" ]; then
-	# Set the screen title
-	DATA="$2"
-	if [ -z "$DATA" ]; then
-		DATA="$1"
-	fi
-	echo -en "\033k${DATA}\033\\" >/dev/tty
+DATA="$2"
+if [ -z "$DATA" ]; then
+	DATA="$1"
 fi
 
+case "${TERM}" in
+xterm*)
+	# Set the xterm title
+	echo -en "\033]0;${DATA}\007" > /dev/tty
+	;;
+screen*)
+	# Set the screen title
+	echo -en "\033k${DATA}\033\\" >/dev/tty
+	;;
+esac
+
+# Return the string unchanged
 echo "$1"

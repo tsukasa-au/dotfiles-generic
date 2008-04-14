@@ -1,6 +1,11 @@
 startup_message off
 altscreen on
+defbce on
 shelltitle "$ |bash"
+term 'screen-s'
+
+# Screen needs to be told how to set the xterm titlebar
+termcapinfo xterm*|rxvt*|kterm*|Eterm* 'hs:ts=\E]0;:fs=\007:ds=\E]0;\007'
 
 hardstatus alwayslastline                                                                                                                          
 # James' line
