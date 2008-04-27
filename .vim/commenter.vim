@@ -16,7 +16,7 @@ function! ToggleCommentify()
 					\'///': ['ox', 'java', 'cpp', 'c', 'objc', 'php', 'javascript'],
 					\'"""': ['vim'],
 					\'!!!': ['xdefaults'],
-					\'%%%': ['tex']
+					\'%%%': ['tex', 'matlab']
 				\}
 
 		for commentChar in keys(commentMapping)
