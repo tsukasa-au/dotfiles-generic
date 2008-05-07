@@ -1,5 +1,8 @@
 \documentclass[a4paper,12pt]{report}
 
+% This file must be saved in the UTF8 encoding
+\usepackage[utf8]{inputenc}
+
 % These packages need to be included to insert pictures into your report
 \usepackage[pdftex]{graphicx}
 
@@ -18,22 +21,24 @@
 % Changes section numbering somehow...
 \renewcommand{\thesection}{\arabic{section}}
 
+% Bibliography style. Aside from plain, there is also apalike.
+% Look for *.bst files
+\bibliographystyle{plain}
 
-\title{The Title goes here}
+
+\title{___The Title goes here}
 \author{
 	___First Author\\
-	(email: {\tt ___user@example.com}) \\
+	(email: \tt{___user@example.com}) \\
 }
 
 \begin{document}
-%The \maketitle command puts today's date on your document
 \maketitle
 
 \begin{abstract}
 ___Abstract goes here
 \end{abstract}
 
-% The table of contents is made automatically
 \tableofcontents
 \newpage
 \listoffigures
@@ -43,17 +48,7 @@ ___Abstract goes here
 
 
 
-%The {99} in the commad below tells LaTeX not to expect any numbers wider
-%than the width of the number 99 (ie. there are no more than 99 referenced
-% items)
-\begin{thebibliography}{99}
-% The command below gives the item a label which is used in citing references
-\bibitem{abc}
-J. Author, {\em The title of the Article}, Name of the Journal. Volume 
- (YEAR), page(s).                                           
-         
-
-\end{thebibliography}
+\bibliography{___something}
 
 \end{document}
 
