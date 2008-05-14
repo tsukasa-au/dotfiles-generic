@@ -25,6 +25,9 @@ set pager_index_lines=5
 # Don't scroll past the current message in the pager
 set pager_stop
 
+# Don't show + signs when wrapping lines in the pager
+set nomarkers
+
 # Format for the status bar
 set status_format="$HOME/.mutt/set_xtitle '[Unread:%u Inc:%b] %f@%h - Mutt' '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?u? Unread:%u?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? %l?]-%>-(%P)---'|"
 
