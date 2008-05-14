@@ -9,12 +9,14 @@ set history=100
 
 " Make a backup (i. e. 'file~') and save it.
 set backup
-" create ~/tmp/ if it doesn't exist and use ~/tmp to save the 
-" backups into
+" create ~/tmp/vimbak if it doesn't exist and use it to save the backups
 if has("unix")
 	if !isdirectory(expand("~/tmp/vimbak/."))
 		!mkdir -p ~/tmp/vimbak
 	endif
+	set backupdir=~/tmp/vimbak
 endif
-set backupdir=~/tmp/vimbak
+
+" Use modelines
+set modelines=5
 
