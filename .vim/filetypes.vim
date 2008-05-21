@@ -13,7 +13,7 @@ autocmd BufNewFile,BufRead *.tex setlocal ft=tex
 " Set options based on filetypes, overriding the filetype plugin/indent options
 autocmd FileType text call WrapOn()
 autocmd FileType bib setlocal textwidth=78 nocindent smartindent
-autocmd FileType mail setlocal textwidth=78
+autocmd FileType mail setlocal textwidth=72
 autocmd FileType tex call WrapOn()
 autocmd FileType objc setlocal nocindent smartindent
 
