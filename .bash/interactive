@@ -50,3 +50,15 @@ ssource "${HOME}/.bash/interactive_local"
 # Load bash completion if available
 ssource "/etc/bash_completion"
 
+# This is designed to be annoying enough for me to actually commit any changes
+# I have made.
+HGDOTFILES="$(readlink ~/.bash)/.."
+if [ ! -z "$(which hg 2>/dev/null)" ]; then
+	pushd "$HGDOTFILES" >/dev/null
+	hgdotchanges="$(hg status --modified --added --removed --deleted --no-status)"
+	if [ ! -z "$hgdotchanges" ]; then
+		echo "WARNING: There are uncommited dotfile changes, to the following files:" >&2
+		echo "$hgdotchanges" >&2
+	fi
+	popd >/dev/null
+fi
