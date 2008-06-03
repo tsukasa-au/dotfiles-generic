@@ -4,9 +4,6 @@ defbce on
 shelltitle "$ |bash"
 term 'screen-s'
 
-# Screen needs to be told how to set the xterm titlebar
-termcapinfo xterm*|rxvt*|kterm*|Eterm* 'hs:ts=\E]0;:fs=\007:ds=\E]0;\007'
-
 # Display a line at the bottom with hostname, window titles & time
 caption always '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
 
