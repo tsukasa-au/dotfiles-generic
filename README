@@ -27,8 +27,7 @@ Create files in ~/.bash called environment_local, interactive_local, etc to
 do this. Also, learn how to use Mercurial and use it to version control other
 configure files of yours.
 
-For OSX/BSD you probably want this in ~/.bash/interactive_local
-alias ls='ls -G'
+For OSX/BSD you probably want to look at http://delx.net.au/hg/hgdotfiles-macosx
 
 Here are some good Mercurial tutorials:
 http://hgbook.red-bean.com/

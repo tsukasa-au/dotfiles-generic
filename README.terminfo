@@ -4,18 +4,17 @@ Terminfo straight from Debian:
  - screen*
  - xterm (same as xterm-debian)
  - xterm-color
- - xterm-debian
- - xterm-new
 
 My modified terminfos:
- - xterm-itermapp
+ - itermapp
      based on xterm-debian but with a few fixes for iTerm.app
- - xterm-itermapp-256color
-     same as above but with 256 colour support advertised
  - xterm-simple
 	 a simpler profile with less advertised features. It's based on
 	 xterm-color, which is based on xterm-r6. It has ^? for backspace and ^[[3~
 	 for delete
+
+The following terminfo properties were added: hs, tsl, fsl, dsl. These are for
+the terminal status line, in this case the xterm titlebar.
 
 
 How should you use these?
@@ -26,7 +25,7 @@ If you're running xterm, urxvt, konsole or any other compliant terminal you
 should set TERM=xterm and ensure that backspace/delete send ^? and ^[[3~
 respectively. TERM must be set in your console preferences, NOT in bashrc, etc
 
-If you're running iTerm.app then set TERM to be xterm-itermapp. Do this by
+If you're running iTerm.app then set TERM to be itermapp. Do this by
 going to Bookmarks-> Manage Profiles-> Terminal Profiles-> Terminal Type
 
 If you have problems only on a specific machine, older OSes in particular, try
