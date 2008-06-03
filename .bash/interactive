@@ -25,18 +25,14 @@ fi
 ssource "${HOME}/.bash/colors"
 
 # xterm titlebar displays 'hostname:workingdir'
-case "${TERM}" in
-xterm*|rxvt*|screen*)
-	HOSTNAME="$(hostname | cut -d '.' -f 1)"
-	PROMPT_COMMAND="echo -ne \"\033]0;${HOSTNAME}: \${PWD/\$HOME/~}\007\""
-	unset HOSTNAME
-	;;
-esac
+if tput hs || tput tsl &> /dev/null; then
+	PROMPT_COMMAND='tput tsl; echo -n "$(hostname| cut -d. -f1): ${PWD/$HOME/~}"; tput fsl;'
+fi
 
 # screen window displays current command
 case "${TERM}" in
 screen*)
-	PROMPT_COMMAND="$PROMPT_COMMAND ; echo -ne '\033k\033\\'"
+	PROMPT_COMMAND="$PROMPT_COMMAND echo -ne '\033k\033\\'"
 	;;
 esac
 
