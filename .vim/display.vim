@@ -53,8 +53,11 @@ set hlsearch
 set mouse=a
 set mousehide
 
-" Mouse support detection
-if strpart(&ttytype, 0, 14) == 'xterm-itermapp' || strpart(&ttytype, 0, 6) == 'screen'
+" Hacks for iTerm
+if $TERM_PROGRAM == 'iTerm.app'
+	" This is supported, but not autodetectable
 	set ttymouse=xterm2
+	" Fixes ugly black border when using Vim splits and iTerm tabs
+	set t_ms=
 endif
 
