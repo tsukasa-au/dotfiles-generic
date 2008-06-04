@@ -26,7 +26,7 @@ ssource "${HOME}/.bash/colors"
 
 # xterm titlebar displays 'hostname:workingdir'
 if tput hs || tput tsl &> /dev/null; then
-	PROMPT_COMMAND='tput tsl; echo -n "$(hostname| cut -d. -f1): ${PWD/$HOME/~}"; tput fsl;'
+	PROMPT_COMMAND='tput tsl; echo -n "$(hostname| cut -d. -f1):${PWD/$HOME/~}"; tput fsl;'
 fi
 
 # screen window displays current command
