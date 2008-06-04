@@ -17,7 +17,7 @@ PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
 
 # Check for unsupported TERM variable
 if ! tput init &> /dev/null; then
-	echo "Warning\! TERM=$TERM unsupported, using TERM=xterm"
+	echo "Warning! TERM=$TERM unsupported, using TERM=xterm"
 	export TERM=xterm
 fi
 
