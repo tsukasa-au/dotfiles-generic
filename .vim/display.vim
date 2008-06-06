@@ -54,7 +54,7 @@ set mouse=a
 set mousehide
 
 " Hacks for iTerm
-if $TERM_PROGRAM == 'iTerm.app'
+if $TERM_PROGRAM == 'iTerm.app' || $TERM == 'itermapp'
 	" This is supported, but not autodetectable
 	set ttymouse=xterm2
 	" Fixes ugly black border when using Vim splits and iTerm tabs
