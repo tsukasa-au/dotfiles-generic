@@ -71,6 +71,13 @@ function WrapOff()
 	nunmap <buffer> 0
 	nunmap <buffer> ^
 	nunmap <buffer> $
+	vunmap <buffer> <Down>
+	vunmap <buffer> <Up>
+	vunmap <buffer> <End>
+	vunmap <buffer> <Home>
+	vunmap <buffer> 0
+	vunmap <buffer> ^
+	vunmap <buffer> $
 	" Allow only backspace & space
 	set whichwrap=b,s
 endfunction
@@ -90,6 +97,13 @@ function WrapOn()
 	nmap <buffer> 0 g0
 	nmap <buffer> ^ g^
 	nmap <buffer> $ g$
+	vmap <buffer> <Down> gj
+	vmap <buffer> <Up> gk
+	vmap <buffer> <End> g$
+	vmap <buffer> <Home> g0
+	vmap <buffer> 0 g0
+	vmap <buffer> ^ g^
+	vmap <buffer> $ g$
 	" Allow backspace, space, left/right keys to move across lines
 	set whichwrap=b,s,<,>,[,]
 endfunction
