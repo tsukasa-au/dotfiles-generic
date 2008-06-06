@@ -3,11 +3,9 @@
 # set status_format="mutt_xtitle 'xterm titlebar fmt' 'mutt status fmt'|"
 
 # Set the xterm title
-case "${TERM}" in
-xterm*|rxvt*|screen*)
-	echo -ne "\033]0;$1\007" > /dev/tty
-	;;
-esac
+if tput hs || tput tsl &> /dev/null; then
+	(tput tsl; echo -n "$1"; tput fsl) > /dev/tty
+fi
 
 # Return the string unchanged
 echo "$2"
