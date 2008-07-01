@@ -17,7 +17,7 @@ export HISTCONTROL="ignoredups"
 export HISTSIZE="10000"
 
 # Expand any symbolic links in the TMPDIR environment variable
-export TMPDIR="$(cd "${TMPDIR}" && pwd -P)"
+[ -n "$TMPDIR" ] && export TMPDIR="$(cd "${TMPDIR}" && pwd -P)"
 
 # Load the bash functions
 source "${HOME}/.bash/functions"
