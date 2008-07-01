@@ -10,7 +10,14 @@
 \usepackage{amssymb,amsmath}
 
 % Support links in the pdf file
-\usepackage{hyperref}
+\usepackage[pdfborder={0,0,0}]{hyperref}
+
+% Allow \url{}
+\usepackage{url}
+
+% Allow fancier citations, \citet \citep \citeauthor, etc
+% See details here: http://merkel.zoneo.net/Latex/natbib.php
+\usepackage[square,comma,sort,authoryear]{natbib}
 
 % Put a medium sized gap between paragraphs
 \setlength{\parskip}{\medskipamount}
@@ -23,7 +30,7 @@
 
 % Bibliography style. Aside from plain, there is also apalike.
 % Look for *.bst files
-\bibliographystyle{plain}
+\bibliographystyle{plainnat}
 
 
 \title{___The Title goes here}
