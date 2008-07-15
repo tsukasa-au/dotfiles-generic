@@ -8,7 +8,7 @@ source "$HOME/.mutt/macros"
 source "$HOME/.mutt/composing"
 source "$HOME/.mutt/display"
 source "$HOME/.mutt/general"
-source "$HOME/.mutt/aliases"
+###source "$HOME/.mutt/aliases"
 
 # Get mutt to display its version on startup.
 push <show-version>

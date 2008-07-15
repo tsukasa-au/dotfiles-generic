@@ -14,7 +14,8 @@ export CVS_RSH="ssh"
 export RSYNC_RSH="ssh"
 export PYTHONSTARTUP="${HOME}/.pythonrc.py"
 export HISTCONTROL="ignoredups"
-export HISTSIZE="10000"
+export HISTSIZE="20000"
+export HISTFILESIZE="20000"
 
 # Expand any symbolic links in the TMPDIR environment variable
 [ -n "$TMPDIR" ] && export TMPDIR="$(cd "${TMPDIR}" && pwd -P)"
@@ -25,9 +26,20 @@ source "${HOME}/.bash/functions"
 # The current directory shouldn't be in the path
 pathremove .
 
-# Load local environment settings
-ssource "${HOME}/.bash/environment_local"
+# I am an admin kinda person... thus I like having access to sbin
+pathappend "/sbin"
+pathappend "/usr/sbin"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+       debian_chroot=$(cat /etc/debian_chroot)
+fi
 
 # ~/bin should be in the front of path if it exists
 pathprepend "${HOME}/bin"
 
+# Load local environment settings
+ssource "${HOME}/.bash/environment_local"
+
+# Really ensure that ~/bin is at the front of the path (if it exists)
+pathprepend "${HOME}/bin"

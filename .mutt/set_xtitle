@@ -2,11 +2,21 @@
 # Example usage:
 # set status_format="mutt_xtitle 'xterm titlebar fmt' 'mutt status fmt'|"
 
-# Set the xterm title
-if tput hs || tput tsl &> /dev/null; then
-	(tput tsl; echo -n "$1"; tput fsl) > /dev/tty
+DATA="$2"
+if [ -z "$DATA" ]; then
+	DATA="$1"
 fi
 
-# Return the string unchanged
-echo "$2"
+case "${TERM}" in
+xterm*)
+	# Set the xterm title
+	echo -en "\033]0;${DATA}\007" > /dev/tty
+	;;
+screen*)
+	# Set the screen title
+	echo -en "\033k${DATA}\033\\" >/dev/tty
+	;;
+esac
 
+# Return the string unchanged
+echo "$1"

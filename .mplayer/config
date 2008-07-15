@@ -1,0 +1,22 @@
+prefer-ipv4=1
+
+# Reuse windows (stop them from being moved from the screen I pick)
+fixed-vo=yes
+framedrop=1
+
+# Enable yummy ASS subtitle rendering
+ass=yes
+ass-use-margins=yes
+embeddedfonts=yes
+
+# Font for subtitles
+fontconfig=1
+font='Bitstream Vera Sans'
+subfont-autoscale=1
+
+
+# Subtitle Niceness (for DVD's)
+spuaa=4
+#spuguass=3.0
+
+cache=8192 
