@@ -17,9 +17,12 @@ DEFAULTDARK=1
 
 
 # Terminals that we want coloured prompts in
-[ -n "${COLORTERM}"      ] && PS1_COLOR=1
-[ "${TERM}" = "linux"    ] && DARK="${DARK:-1}"
-[ "$(tput colors)" -gt 2 ] && PS1_COLOR=1
+[ -n "${COLORTERM}"          ] && PS1_COLOR=1
+[ "${TERM}" = "linux"        ] && DARK="${DARK:-1}"
+[ "${TERM}" = "screen.linux" ] && DARK="${DARK:-1}"
+[ "${TERM}" = "putty"        ] && DARK="${DARK:-1}"
+[ "${TERM}" = "cygwin"       ] && DARK="${DARK:-1}"
+[ "$(tput colors)" -gt 2     ] && PS1_COLOR=1
 
 # Override COLORFGBG (probably used the darkterm or lightterm function
 if [ -n "${DARK}" ]; then
@@ -32,25 +35,19 @@ unset DEFAULTDARK
 # If COLORFGBG is set, use it to determine the terminal type, DARK=0 is
 # dark on light, DARK=1 is light on dark.
 if [ -n "${COLORFGBG}" ]; then
-	FGBG="$(echo $COLORFGBG | sed 's/;.*;/;/')" # Allow for rxvt without xpm
-	FG=$(echo "${FGBG}" | cut -d ';' -f 1)
-	BG=$(echo "${FGBG}" | cut -d ';' -f 2)
-	if [ "${FG}" = "white" -o "${FG}" = "green" ]; then
+	BG="$(echo "$COLORFGBG" | sed 's/.*;//')"
+	if ! [ "${BG}" -ge 0 ]; then
+		if [ "${BG}" = "white" ]; then
+			DARK=0
+		else
+			DARK=1
+		fi
+	elif [ "${BG}" -ge 0 -a "${BG}" -le 6   -o "${BG}" -eq 8 ]; then
 		DARK=1
-	elif [ "${BG}" = "black" ]; then
-		DARK=1
-	elif [ "${FG}" = "black" ]; then
-		DARK=0
-	elif [ "${BG}" = "white" ]; then
-		DARK=0
-	elif [ "${FG}" -gt "${BG}" ]; then
-		DARK=1
-	elif [ "${FG}" -lt "${BG}" ]; then
+	else
 		DARK=0
 	fi
-	unset FG
 	unset BG
-	unset FGBG
 else
 	# Otherwise we just do our best based on the setting of DARK
 	if [ ${DARK} -eq 0 ]; then
