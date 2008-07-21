@@ -19,6 +19,20 @@ command! QA :qa
 command! Qa :qa
 command! Q :q
 
+" Make the number pad work
+map OX =
+imap OX =
+set t_KC=Op " 0
+set t_KD=Oq " 1
+set t_KE=Or " 2
+set t_KF=Os " 3
+set t_KG=Ot " 4
+set t_KH=Ou " 5
+set t_KI=Ov " 6
+set t_KJ=Ow " 7
+set t_KK=Ox " 8
+set t_KL=Oy " 9
+
 " Unhighlight search results
 nmap <C-l> :nohlsearch<CR>:redraw!<CR>
 
