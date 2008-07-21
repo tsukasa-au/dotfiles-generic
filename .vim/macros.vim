@@ -1,5 +1,43 @@
+" Function key mappings
+map <S-F3> :call ToggleSpelling()<CR>
+imap <S-F3> <C-o>:call ToggleSpelling()<CR>
+map <S-F4> :call InvShow()<CR>
+imap <S-F4> <C-o>:call InvShow()<CR>
+map <S-F5> :call WrapToggle()<CR>
+imap <S-F5> <C-o>:call WrapToggle()<CR>
+map <F8> :call ToggleSpelling()<CR>
+imap <F8> <C-o>:call ToggleSpelling()<CR>
+map <F9> :call InvShow()<CR>
+imap <F9> <C-o>:call InvShow()<CR>
+map <F10> :call WrapToggle()<CR>
+imap <F10> <C-o>:call WrapToggle()<CR>
+
 " Python Calculator
 command! -nargs=+ Calc :r! python -c "from math import *; print <args>"
+
+" Unhighlight search results and redraw the screen
+nmap <C-l> :nohlsearch<CR>:redraw!<CR>
+
+" Map Y to be consistent with D, C, etc
+nmap Y y$
+
+" CTRL-n and CTRL-p to go forwards and backwards through files
+nmap <C-n> :next<CR>
+nmap <C-p> :prev<CR>
+
+" CTRL-J/K to move up and down, collapsing open windows
+map <C-J> <C-W>j<C-W>_
+map <C-K> <C-W>k<C-W>_
+
+" Press CTRL-z after pasting something to fix up formatting
+imap <C-z> <ESC>u:set paste<CR>.:set nopaste<CR>i
+
+" Tab to switch between split windows
+nmap <Tab> <C-w><C-w>
+
+" Q to reformat paragraph. I never use ex mode anyway (default binding for Q)
+nmap Q gwip
+
 
 " I frequently type :Q or :WQ, etc instead of :q, :wq
 command! WQA :wqa
@@ -33,30 +71,6 @@ set t_KJ=Ow " 7
 set t_KK=Ox " 8
 set t_KL=Oy " 9
 
-" Unhighlight search results
-nmap <C-l> :nohlsearch<CR>:redraw!<CR>
-
-" Map Y to be consistent with D, C, etc
-nmap Y y$
-
-" CTRL-n and CTRL-p to go forwards and backwards through files
-nmap <C-n> :next<CR>
-nmap <C-p> :prev<CR>
-
-" CTRL-J/K to move up and down, collapsing open windows
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-
-" Press CTRL-z after pasting something to fix up formatting
-imap <C-z> <ESC>u:set paste<CR>.:set nopaste<CR>i
-
-" Tab to switch between split windows
-nmap <Tab> <C-w><C-w>
-
-" Q to reformat paragraph. I never use ex mode anyway (default binding for Q)
-nmap Q gwip
-
-
 " Toggle wordwrap
 function WrapToggle()
 	if &wrap
@@ -67,8 +81,6 @@ function WrapToggle()
 		echo "Word wrap on"
 	endif
 endfunction
-map <F10> :call WrapToggle()<CR>
-imap <F10> <C-o>:call WrapToggle()<CR>
 
 " Turn word wrap off, reset arrows, home, end, etc to default bindings
 function WrapOff()
@@ -134,8 +146,6 @@ function InvShow()
 		set list
 	endif
 endfunction
-map <F9> :call InvShow()<CR>
-imap <F9> <C-o>:call InvShow()<CR>
 
 
 " Spell checking mode toggle
@@ -150,6 +160,4 @@ function ToggleSpelling()
 		setlocal spell spelllang=
 	endif
 endfunction
-map <F8> :call ToggleSpelling()<CR>
-imap <F8> <C-o>:call ToggleSpelling()<CR>
 
