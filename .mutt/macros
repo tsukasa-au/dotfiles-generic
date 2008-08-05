@@ -3,6 +3,9 @@
 # Previous unread with backtab
 macro index <Backtab> "<previous-new>"
 
+# Delete key should delete forwards
+macro editor <Delete> "<delete-char>"
+
 # Put messages into the junk folder
 macro index <Esc>j "<select-entry><save-message>=Junk<enter>" "move message to the Junk folder"
 macro pager <Esc>j "<save-message>=Junk<enter>" "move message to the junk folder"
