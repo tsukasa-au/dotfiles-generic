@@ -34,6 +34,7 @@ imap <C-z> <ESC>u:set paste<CR>.:set nopaste<CR>i
 
 " Tab to switch between split windows
 nmap <Tab> <C-w><C-w>
+nmap <Esc>[Z <C-w>W
 
 " Q to reformat paragraph. I never use ex mode anyway (default binding for Q)
 nmap Q gwip
