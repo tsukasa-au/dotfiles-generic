@@ -1,5 +1,8 @@
 # vim:ft=muttrc
 
+# Query the address book
+set query_command="lbdbq '%s'"
+
 # Previous unread with backtab
 macro index <Backtab> "<previous-new>"
 
@@ -11,17 +14,18 @@ macro index <Esc>j "<select-entry><save-message>=Junk<enter>" "move message to t
 macro pager <Esc>j "<save-message>=Junk<enter>" "move message to the junk folder"
 
 # Jump to inbox
-macro index i "<change-folder>=Inbox<enter>" "go back to the inbox"
-macro pager i "<change-folder>=Inbox<enter>" "go back to the inbox"
+macro index I "<change-folder>=Inbox<enter>" "go back to the inbox"
+macro pager I "<change-folder>=Inbox<enter>" "go back to the inbox"
 
 # Convenient limits
-macro index I "<limit>~F | ~(~U)<enter>" "limit display to important messages"
-macro index A "<limit>all<enter>" "disable limit"
+###macro index I "<limit>~F | ~(~U)<enter>" "limit display to important messages"
+###macro index A "<limit>all<enter>" "disable limit"
 
 # Make N search backwards
 macro index N "<search-opposite>" "search for next match in opposite direction"
 macro pager N "<search-opposite>" "search for next match in opposite direction"
 macro alias N "<search-opposite>" "search for next match in opposite direction"
+
 
 # Make copying and moving use the file browser by default
 macro index C "<copy-message>?" "copy a message to a mailbox"
@@ -29,3 +33,6 @@ macro index s "<save-message>?" "move a message to a mailbox"
 macro pager C "<copy-message>?" "copy a message to a mailbox"
 macro pager s "<save-message>?" "move a message to a mailbox"
 
+# Make up + down work as I expect in the pager
+macro pager <up> "<previous-line>" "move up a line"
+macro pager <down> "<next-line>" "move down a line"
