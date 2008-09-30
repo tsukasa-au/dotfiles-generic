@@ -15,7 +15,7 @@ macro index i "<change-folder>=Inbox<enter>" "go back to the inbox"
 macro pager i "<change-folder>=Inbox<enter>" "go back to the inbox"
 
 # Convenient limits
-macro index I "<limit>~F | ~(~U)<enter>" "limit display to important messages"
+macro index I "<limit>~F | ~(~U)<enter><last-entry><next-new-then-unread><refresh>" "limit display to important messages"
 macro index A "<limit>all<enter>" "disable limit"
 
 # Make N search backwards
