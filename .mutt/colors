@@ -10,10 +10,10 @@ color message brightred default
 color index magenta default ~F
 color index red default "~N|~O"
 color tree default default
-color indicator brightyellow red
+color indicator default red
 
 # Pager colours
-color hdrdefault blue default
+color hdrdefault yellow default
 color signature red default
 color attachment red default
 color markers red default
@@ -21,15 +21,13 @@ color search white black
 color tilde default default
 
 # Different colours for different levels of quoting
-color quoted    blue            default
-color quoted1   red             default
-color quoted2   magenta         default
-color quoted3   yellow          default
-color quoted4   cyan            default
-color quoted5   blue            default
-color quoted6   magenta         default
-color quoted7   red             default
-color quoted8   yellow          default
-color quoted9   cyan            default
-color signature blue            default
-
+color quoted    red             default
+color quoted1   magenta         default
+color quoted2   yellow          default
+color quoted3   cyan            default
+color quoted5   magenta         default
+color quoted6   red             default
+color quoted7   yellow          default
+color quoted8   cyan            default
+color quoted9   red             default
+color signature yellow          default

@@ -24,6 +24,9 @@ set fast_reply=yes
 # Don't ask for confirmation when a Reply-To header is set
 set reply_to=yes
 
+# Try to 'fix' broken lists
+set ignore_list_reply_to=true
+
 # Forward emails as mime attachments
 set mime_forward=yes
 
