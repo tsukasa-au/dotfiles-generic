@@ -17,6 +17,9 @@ if has("unix")
 	set backupdir=~/tmp/vimbak
 endif
 
+" Create backups by copying files to backup directory instead of renaming
+set backupcopy=yes
+
 " Use modelines
 set modelines=5
 
