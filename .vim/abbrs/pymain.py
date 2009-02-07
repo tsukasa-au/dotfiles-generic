@@ -1,15 +1,11 @@
-import math, os, os.path, sys
+import math
+import os
+import sys
 
-def main(___arg):
+def main():
 	___ pass
 
 if __name__ == "__main__":
-	try:
-		___arg = sys.argv[1]
-	except:
-		print >>sys.stderr, "Usage: %s ___arg" % sys.argv[0]
-		sys.exit(1)
-
-	main(___arg)
+	main()
 
 
