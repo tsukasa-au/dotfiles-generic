@@ -1,8 +1,5 @@
 # vim:ft=muttrc
 
-# Use custom sendmail?
-#set sendmail="$HOME/bin/sendmail.py"
-
 # Generate a from address using the EMAIL environment variable
 set use_from=yes
 

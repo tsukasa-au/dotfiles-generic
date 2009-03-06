@@ -12,3 +12,6 @@ set confirmappend=no
 # Default searches by to, from and subject
 set simple_search='~t %s | ~f %s | ~s %s'
 
+# Check for new mail every 10 seconds
+set timeout=10
+

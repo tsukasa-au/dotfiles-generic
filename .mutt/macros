@@ -7,25 +7,27 @@ macro index <Backtab> "<previous-new>"
 macro editor <Delete> "<delete-char>"
 
 # Put messages into the junk folder
-macro index <Esc>j "<select-entry><save-message>=Junk<enter>" "move message to the Junk folder"
-macro pager <Esc>j "<save-message>=Junk<enter>" "move message to the junk folder"
+macro index <Esc>j "<select-entry><save-message>=junk<enter>" "move message to the Junk folder"
+macro pager <Esc>j "<save-message>=junk<enter>" "move message to the junk folder"
 
 # Jump to inbox
-macro index i "<change-folder>=Inbox<enter>" "go back to the inbox"
-macro pager i "<change-folder>=Inbox<enter>" "go back to the inbox"
+macro index,pager i "<change-folder>=inbox<enter>" "go back to the inbox"
 
 # Convenient limits
 macro index I "<limit>~F | ~(~U)<enter><last-entry><next-new-then-unread><refresh>" "limit display to important messages"
 macro index A "<limit>all<enter>" "disable limit"
 
 # Make N search backwards
-macro index N "<search-opposite>" "search for next match in opposite direction"
-macro pager N "<search-opposite>" "search for next match in opposite direction"
-macro alias N "<search-opposite>" "search for next match in opposite direction"
+macro index,pager,alias N "<search-opposite>" "search for next match in opposite direction"
 
 # Make copying and moving use the file browser by default
-macro index C "<copy-message>?" "copy a message to a mailbox"
-macro index s "<save-message>?" "move a message to a mailbox"
-macro pager C "<copy-message>?" "copy a message to a mailbox"
-macro pager s "<save-message>?" "move a message to a mailbox"
+macro index,pager C "<copy-message>?" "copy a message to a mailbox"
+macro index,pager s "<save-message>?" "move a message to a mailbox"
+
+# Convenient setting of From address from compose screen
+macro compose \e1 "<edit-from><home>(<enter><edit-from>First Last <u1@example.org><enter>:macro compose x \\e2<enter>"
+macro compose \e2 "<edit-from><home>(<enter><edit-from>First Last <u2@example.org><enter>:macro compose x \\e3<enter>"
+macro compose \e3 "<edit-from><home>(<enter><edit-from>First Last <u3@example.org><enter>:macro compose x \\e4<enter>"
+macro compose \e4 "<edit-from><home>(<enter><edit-from>First Last <u4@example.org><enter>:macro compose x \\e1<enter>"
+macro compose x \e1 "switch From\: header"
 

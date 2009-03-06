@@ -7,6 +7,9 @@ set postponed="=Drafts"
 set spoolfile="=Inbox"
 set mbox="=Inbox"
 
+# Use custom sendmail?
+#set sendmail="$HOME/bin/sendmail.py"
+
 # Header caching
 set header_cache="$HOME/.mutt/header_cache"
 
