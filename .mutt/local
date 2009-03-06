@@ -2,10 +2,10 @@
 
 # Mailbox settings
 set folder="$HOME/Mail"
-set record="=Sent"
-set postponed="=Drafts"
-set spoolfile="=Inbox"
-set mbox="=Inbox"
+set record="=sent"
+set postponed="=drafts"
+set spoolfile="=inbox"
+set mbox="=inbox"
 
 # Use custom sendmail?
 #set sendmail="$HOME/bin/sendmail.py"
@@ -17,7 +17,7 @@ set header_cache="$HOME/.mutt/header_cache"
 set maildir_header_cache_verify=no
 
 # List of mailboxes
-mailboxes =Inbox =Junk
+mailboxes =inbox =junk
 
 # List of email addresses
 alternates ^me@example.com$ ^me@example.org$
