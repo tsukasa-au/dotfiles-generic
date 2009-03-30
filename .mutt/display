@@ -17,7 +17,7 @@ folder-hook "=Sent" set sort_aux=last-date-sent # And undo
 folder-hook . 'push <collapse-all>'
 
 # When going to the Inbox only show new & flagged messages
-folder-hook "=Inbox" 'push I'
+folder-hook "=Inbox" 'push "<limit>~F | ~(~U)<enter>"'
 
 # Hide the help line at the top
 #set help=no
@@ -37,7 +37,7 @@ set status_format="$HOME/.mutt/set_xtitle '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New
 # If the thread has been collapsed, it places the number of items that were
 # collapsed in square brackets, otherwise it displays the mail item number
 # first.
-set index_format='%?M?[%02M]&%04C? %Z %H %{%b %d} %-15.15L %s'
+set index_format='%?M?[%03M]&%05C? %Z %H %{%b %d} %-15.15L %s'
 
 # Format for mailboxes in the browser
 set folder_format="%2C %t %f %> %8s %d "
