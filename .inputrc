@@ -10,6 +10,10 @@ set keymap vi-insert
 "\e[5~": beginning-of-history
 "\e[6~": end-of-history
 
+# Since, I really like ^a, and ^e
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+
 set keymap vi-command
 "\C-l": clear-screen
 "\e[2~": quoted-insert
@@ -22,4 +26,6 @@ set keymap vi-command
 "gg": beginning-of-history
 "G": end-of-history
 
-
+# Since, I really like ^a, and ^e
+"\C-a": beginning-of-line
+"\C-e": end-of-line

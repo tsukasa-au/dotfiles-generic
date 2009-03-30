@@ -1,5 +1,8 @@
 # vim:ft=muttrc
 
+# Query the address book
+set query_command="lbdbq '%s'"
+
 # Previous unread with backtab
 macro index <Backtab> "<previous-new>"
 
@@ -7,15 +10,15 @@ macro index <Backtab> "<previous-new>"
 macro editor <Delete> "<delete-char>"
 
 # Put messages into the junk folder
-macro index <Esc>j "<select-entry><save-message>=junk<enter>" "move message to the Junk folder"
-macro pager <Esc>j "<save-message>=junk<enter>" "move message to the junk folder"
+macro index <Esc>j "<select-entry><save-message>=Junk<enter>" "move message to the Junk folder"
+macro pager <Esc>j "<save-message>=Junk<enter>" "move message to the junk folder"
 
 # Jump to inbox
-macro index,pager i "<change-folder>=inbox<enter>" "go back to the inbox"
+macro index,pager I "<change-folder>=Inbox<enter>" "go back to the inbox"
 
 # Convenient limits
-macro index I "<limit>~F | ~(~U)<enter><last-entry><next-new-then-unread><refresh>" "limit display to important messages"
-macro index A "<limit>all<enter>" "disable limit"
+###macro index I "<limit>~F | ~(~U)<enter><last-entry><next-new-then-unread><refresh>" "limit display to important messages"
+###macro index A "<limit>all<enter>" "disable limit"
 
 # Make N search backwards
 macro index,pager,alias N "<search-opposite>" "search for next match in opposite direction"
@@ -31,3 +34,6 @@ macro compose \e3 "<edit-from><home>(<enter><edit-from>First Last <u3@example.or
 macro compose \e4 "<edit-from><home>(<enter><edit-from>First Last <u4@example.org><enter>:macro compose x \\e1<enter>"
 macro compose x \e1 "switch From\: header"
 
+# Make up + down work as I expect in the pager
+macro pager <up> "<previous-line>" "move up a line"
+macro pager <down> "<next-line>" "move down a line"
