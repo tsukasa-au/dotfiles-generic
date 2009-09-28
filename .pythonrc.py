@@ -12,8 +12,11 @@ defaultCompleter = rlcompleter.Completer()
 historyPath = os.path.expanduser("~/.pyhistory")
 
 def myCompleter(text, state):
-	if text.strip() == "" and state == 0:
-		return text + "\t"
+	if text.strip() == "":
+		if state == 0:
+			return text + "\t"
+		else:
+			return None
 	else:
 		return defaultCompleter.complete(text, state)
 
