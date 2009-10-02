@@ -36,6 +36,7 @@ function! ToggleCommentify()
 			\'terminfo',
 			\'vrml',
 			\'xf86conf',
+			\'cfg',
 		\],
 \
 		\'///': [
