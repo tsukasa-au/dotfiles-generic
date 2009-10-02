@@ -7,7 +7,7 @@
 #stty erase $(tput kbs)
 
 # Prompt: user@host:(chroot)directory$
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
 
 # Check for unsupported TERM variable
 if ! tput init &> /dev/null; then
