@@ -1,0 +1,71 @@
+#!/bin/bash
+
+export PATH="$PATH:$HOME/bin"
+
+# fixes some Java applications that use AWT
+export AWT_TOOLKIT=MToolkit
+
+# status bar colours
+export NORMBGCOLOR='#2e3436'
+export NORMFGCOLOR='#f5a400'
+# width of your screen in pixels, so we can work out how wide to make the status bars
+export WIDTH=1280
+export WIDTH=$(($WIDTH - 50))
+# width of the right-hand bar
+export RBARWIDTH=500
+
+# Load my keyboard hacks
+if [ -r ~/.xmodmaprc ]; then
+	xmodmap ~/.xmodmaprc
+fi
+
+export LC_CTYPE=en_AU.UTF-8
+xscreensaver -no-splash &
+
+if which syssensor-x11 &>/dev/null; then
+	syssensor-x11 &
+fi
+
+if which fbpanel &>/dev/null; then
+	fbpanel &
+fi
+
+# run the status bar, with battery/wifi/time/whatever information you have
+$HOME/bin/.installs/xmonad_bar/bar.py -x $RBARWIDTH -w $(($WIDTH - $RBARWIDTH)) &
+
+if echo "$STARTUP" | egrep "gnome-session$"; then
+###	xterm &
+	return
+fi
+
+nm-applet &
+
+/usr/lib/gvfs/gvfs-hal-volume-monitor &
+
+# Make GTK apps look and behave how they were set up in the gnome config tools
+gnome-settings-daemon
+# Make GTK apps look and behave how they were set up in the XFCE config tools
+###	xfce-mcs-manager n
+
+
+# Wake gnome-settings-daemon up
+dbus-send --session --dest=org.gnome.SettingsDaemon \
+  --type=method_call --print-reply --reply-timeout=5000 \
+  /org/gnome/SettingsDaemon \
+  org.gnome.SettingsDaemon.Awake
+
+( sleep 6 && dbus-send --session --dest=org.gnome.SettingsDaemon --type=method_call --print-reply --reply-timeout=5000 /org/gnome/SettingsDaemon org.gnome.SettingsDaemon.Awake ) &
+
+# Lets try enabling pulse audio
+if [ -x /usr/bin/pulse-session ]; then
+	STARTUP="/usr/bin/pulse-session $STARTUP"
+fi
+
+if [ -x /usr/bin/seahorse-agent ]; then
+###	STARTUP="/usr/bin/seahorse-agent $STARTUP"
+	eval `/usr/bin/seahorse-agent`
+fi
+
+if which gnome-keyring-daemon; then
+	eval `gnome-keyring-daemon`
+fi
