@@ -71,7 +71,7 @@ if [ ${PS1_COLOR:-0} -eq 1 ]; then
 		# so they show up on a dark terminal
 		LS_COLORS="$(echo "${LS_COLORS}" | sed 's/00;/01;/g')"
 		LSCOLORS="ExFxCxDxBxEGEDABAGACAD" # BSD ls
-		PS1="$(echo "${PS1}" | sed 's/00;/01;/g')"
+		PS1="$(echo "${PS1}" | sed -e 's/00;/01;/g' -e 's/;3\([0-9]\)m/;9\1m/g')"
 	fi
 
 	export LS_COLORS
