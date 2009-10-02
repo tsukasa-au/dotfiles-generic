@@ -12,4 +12,3 @@ main(void)
 	___
 	return 0;
 }
-

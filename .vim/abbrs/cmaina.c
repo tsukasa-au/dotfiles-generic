@@ -12,4 +12,3 @@ main(int argc, char** argv)
 	___
 	return 0;
 }
-

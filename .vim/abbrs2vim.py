@@ -39,5 +39,3 @@ for abbrfile in os.listdir(abbrsdir):
 		# Leave the cursor in insert mode
 		abbr += "a\n"
 	outfile.write(abbr)
-
-
