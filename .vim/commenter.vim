@@ -64,6 +64,7 @@ function! ToggleCommentify()
 \
 		\'---': [
 			\'sql',
+			\'haskel',
 		\]
 	\}
 
