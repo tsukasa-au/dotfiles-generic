@@ -2,8 +2,8 @@
 
 # Headers to show
 ignore *
-unignore date return-path from to cc bcc reply-to subject user-agent x-mailer x-spam-score
-hdr_order date return-path from to cc bcc reply-to subject user-agent x-mailer x-spam-score
+unignore date return-path from to cc bcc reply-to subject user-agent x-mailer x-mime-ole x-mimeole
+hdr_order date return-path from to cc bcc reply-to subject user-agent x-mailer x-mimeole x-spam-score
 
 # Sort by threads then date received
 set sort=threads
@@ -13,11 +13,14 @@ set sort_aux=last-date-received
 folder-hook . set sort_aux=last-date-received # And undo
 folder-hook "=Sent" set sort_aux=last-date-sent # And undo
 
+# Collapse all threads when you enter a mail folder (makes mailing lists easier to manage)
+folder-hook . 'push <collapse-all>'
+
 # When going to the Inbox only show new & flagged messages
-folder-hook "=Inbox" 'push I'
+folder-hook "=Inbox" 'push "<limit>~F | ~(~U)<enter>"'
 
 # Hide the help line at the top
-set help=no
+#set help=no
 
 # Show 5 lines of index when viewing a message
 set pager_index_lines=5
@@ -29,10 +32,12 @@ set pager_stop
 set nomarkers
 
 # Format for the status bar
-set status_format="$HOME/.mutt/set_xtitle '[Unread:%u Inc:%b] %f@%h - Mutt' '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?u? Unread:%u?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? %l?]-%>-(%P)---'|"
+set status_format="$HOME/.mutt/set_xtitle '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---' 'Mutt: %f [F:%F U:%u]'|"
 
-# Format for messages in the index
-set index_format='%4C %Z %H %{%b %d} %-15.15L %s'
+# If the thread has been collapsed, it places the number of items that were
+# collapsed in square brackets, otherwise it displays the mail item number
+# first.
+set index_format='%?M?[%03M]&%05C? %Z %H %{%b %d} %-15.15L %s'
 
 # Format for mailboxes in the browser
 set folder_format="%2C %t %f %> %8s %d "
@@ -53,3 +58,8 @@ auto_view text/enriched text/html
 # Prefer text to HTML
 alternative_order text/enriched text/plain text/html
 
+# Enable mutt to use mime attachments from broken clients (Outlook/etc)
+mime_lookup application/octet-stream
+
+# Collapse all threads (except thread with unread mails)
+unset collapse_unread

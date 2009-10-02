@@ -6,8 +6,8 @@ set use_from=yes
 # Generate from addresses in replies based on the address that received the mail
 set reverse_name=yes
 
-# Postpone messages without asking first
-set postpone=yes
+# Postpone messages only after confirming with the user
+set postpone=ask-yes
 
 # Always include messages in replies
 set include=yes
@@ -18,8 +18,11 @@ set attribution="On %d, %n wrote:"
 # Don't ask for address or subject when replying
 set fast_reply=yes
 
-# Don't ask for confirmation when a Reply-To header is set
-set reply_to=yes
+# Ask for confirmation when a Reply-To header is set
+set reply_to=ask-yes
+
+# Try to 'fix' broken lists
+set ignore_list_reply_to=yes
 
 # Forward emails as mime attachments
 set mime_forward=yes
@@ -29,4 +32,7 @@ set forward_format="Fwd: %s"
 
 # Never write out the Bcc header
 set write_bcc=no
+
+# Place email headers in the the file edited by vim
+set edit_headers=yes
 

@@ -6,14 +6,8 @@
 # enabled by default because terminfo is often broken.
 #stty erase $(tput kbs)
 
-# The contents of /etc/debian_chroot will be printed in the prompt. You can
-# create this file in chroot environments to know where you are.
-if [ -z "$debian_chroot" -a -r /etc/debian_chroot ]; then
-	debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# Prompt: user@host:directory$
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
+# Prompt: user@host:(chroot)directory$
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 
 # Check for unsupported TERM variable
 if ! tput init &> /dev/null; then
@@ -59,3 +53,17 @@ ssource "${HOME}/.bash/interactive_local"
 # Load bash completion if available
 ssource "/etc/bash_completion"
 
+# This is designed to be annoying enough for me to actually commit any changes
+# I have made.
+HGDOTFILES="$(readlink ~/.bash)/.."
+if [ ! -z "$(which hg 2>/dev/null)" ]; then
+	pushd "$HOME" >/dev/null
+	cd "$HGDOTFILES"
+	hgdotchanges="$(hg status --modified --added --removed --deleted --no-status)" 2>/dev/null
+	if [ ! -z "$hgdotchanges" ]; then
+		echo "WARNING: There are uncommited dotfile changes, to the following files:" >&2
+		echo "$hgdotchanges" >&2
+	fi
+	popd >/dev/null
+fi
+unset HGDOTFILES hgdotchanges
