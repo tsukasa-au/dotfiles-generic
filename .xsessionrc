@@ -2,16 +2,20 @@
 
 export PATH="$PATH:$HOME/bin"
 
-# fixes some Java applications that use AWT
+# Fixes some Java applications that use AWT
 export AWT_TOOLKIT=MToolkit
 
-# status bar colours
+# Status bar colours
 export NORMBGCOLOR='#2e3436'
 export NORMFGCOLOR='#f5a400'
-# width of your screen in pixels, so we can work out how wide to make the status bars
-export WIDTH=1280
-export WIDTH=$(($WIDTH - 50))
-# width of the right-hand bar
+
+# Width of your screen in pixels, so we can work out how wide to make the status bars
+###export WIDTH=1280
+
+export WIDTH="$(xdpyinfo | grep 'dimensions:' | awk '{ print $2;}' | cut -f1 -d'x')"
+export WIDTH=$((WIDTH - 50))
+
+# Width of the right-hand bar
 export RBARWIDTH=500
 
 # Load my keyboard hacks
@@ -30,7 +34,7 @@ if which fbpanel &>/dev/null; then
 	fbpanel &
 fi
 
-# run the status bar, with battery/wifi/time/whatever information you have
+# Run the status bar, with battery/wifi/time/whatever information you have
 $HOME/bin/.installs/xmonad_bar/bar.py -x $RBARWIDTH -w $(($WIDTH - $RBARWIDTH)) &
 
 if echo "$STARTUP" | egrep "gnome-session$"; then
