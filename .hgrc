@@ -1,9 +1,31 @@
 [extensions]
 fetch =
 convert =
-graphlog =
-extdiff =
-rebase=
+rebase =
 
-[extdiff]
-cmd.vimdiff =
+# Pagers/Coloring
+color =
+pager =
+
+# Graphical viewer
+hgk =
+
+# Text viewer
+graphlog =
+
+[pager]
+pager = LESS='FSRX' less
+attend = log, diff
+
+[color]
+status.unknown = magenta bold
+
+diff.diffline = bold
+diff.extended = cyan bold
+diff.file_a = red bold
+diff.file_b = cyan bold
+diff.hunk = magenta
+diff.deleted = red
+diff.inserted = cyan
+diff.changed = white
+diff.trailingwhitespace = bold red_background
