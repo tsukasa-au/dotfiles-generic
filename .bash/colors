@@ -69,7 +69,7 @@ if [ ${PS1_COLOR:-0} -eq 1 ]; then
 	else
 		# We need to bold the LS_COLORS and PS1 environment variables
 		# so they show up on a dark terminal
-		LS_COLORS="$(echo "${LS_COLORS}" | sed 's/00;/01;/g')"
+		LS_COLORS="$(echo "${LS_COLORS}" | sed -e 's/00;/01;/g' -e 's/;3\([0-9]\)/;9\1/g')"
 		LSCOLORS="ExFxCxDxBxEGEDABAGACAD" # BSD ls
 		PS1="$(echo "${PS1}" | sed -e 's/00;/01;/g' -e 's/;3\([0-9]\)m/;9\1m/g')"
 	fi
