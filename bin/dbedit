@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Function to obtain the realpath to a file (since this program does not exist
+# on OSX we use python
+function realpath {
+	echo -n "$1" | python -c "import os,sys; sys.stdout.write(os.path.realpath(sys.stdin.read()))"
+}
+
+# Cleanup our tempdir when we are finished
+function cleanup {
+	if [ ! -z "$MYTEMP" ]; then
+		rm -rf "$MYTEMP"
+	fi
+}
+
+MYTEMP="$(mktemp -d)"
+trap "cleanup" 15 0
+
+input="$(realpath "$1")"
+if [ $# -gt 1 ]; then
+	output="$(realpath "$2")"
+else
+	output="${input}"
+fi
+
+cd "${MYTEMP}"
+
+sqlite3 "$input" .dump > input.sql || exit 1
+MD5="$(md5sum "input.sql" | awk '{print $1}')"
+
+"${EDITOR:-vim}" input.sql
+
+if [ "$MD5" != "$(md5sum "input.sql" | awk '{print $1}')" ]; then
+	sqlite3 output.db ".read input.sql" || exit 1
+	mv output.db "$output" || exit 1
+else
+	echo "Database unchanged" >&2
+fi

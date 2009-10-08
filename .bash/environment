@@ -38,6 +38,8 @@ fi
 # ~/bin should be in the front of path if it exists
 pathprepend "${HOME}/bin"
 
+export HGEDITOR="${HOME}/bin/hgeditor"
+
 # Load local environment settings
 ssource "${HOME}/.bash/environment_local"
 
