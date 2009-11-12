@@ -1,0 +1,14 @@
+#! bash
+
+# XXX: This is only required as there is a bug in the gdm package
+
+OPTIONFILE=${OPTIONFILE:-/etc/X11/Xsession.options}
+
+SYSRESOURCES=${SYSRESOURCES:-/etc/X11/Xresources}
+USRRESOURCES=${USRRESOURCES:-$HOME/.Xresources}
+
+SYSSESSIONDIR=${SYSSESSIONDIR:-/etc/X11/Xsession.d}
+USERXSESSION=${USERXSESSION:-$HOME/.xsession}
+USERXSESSIONRC=${USERXSESSIONRC:-$HOME/.xsessionrc}
+ALTUSERXSESSION=${ALTUSERXSESSION:-$HOME/.Xsession}
+ERRFILE=${ERRFILE:-$HOME/.xsession-errors}
