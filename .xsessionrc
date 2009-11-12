@@ -35,9 +35,13 @@ if which fbpanel &>/dev/null; then
 fi
 
 # Run the status bar, with battery/wifi/time/whatever information you have
-$HOME/bin/.installs/xmonad_bar/bar.py -x $RBARWIDTH -w $(($WIDTH - $RBARWIDTH)) &
+if [ -e "${HOME}/.fonts/Monaco.ttf" ]; then
+	$HOME/bin/.installs/xmonad_bar/bar.py -x $RBARWIDTH -w $(($WIDTH - $RBARWIDTH)) --font-name 'Monaco:size=8:bold' &
+else
+	$HOME/bin/.installs/xmonad_bar/bar.py -x $RBARWIDTH -w $(($WIDTH - $RBARWIDTH)) &
+fi
 
-if echo "$STARTUP" | egrep "gnome-session$"; then
+if echo "$STARTUP" | egrep "gnome-session$" || [ -z "$STARTUP" ]; then
 ###	xterm &
 	return
 fi
