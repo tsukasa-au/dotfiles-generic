@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# vim:set nolist noet tw=0 ts=4 sw=4 sts=4:
 
 # Useful things to have
 from __future__ import division
@@ -33,4 +34,3 @@ if os.path.exists(historyPath):
 atexit.register(save_history)
 
 del rlcompleter, readline, atexit
-

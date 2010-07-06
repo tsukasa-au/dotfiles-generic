@@ -1,3 +1,5 @@
+--- vim:set nolist noet tw=0 ts=4 sw=4 sts=4:
+
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks

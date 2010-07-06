@@ -1,4 +1,5 @@
 #! bash
+# vim:set nolist noet tw=0 ts=4 sw=4 sts=4:
 
 # This file sets up the environment correctly. It gets run for every shell,
 # so it must be fast. Also, starting a shell within a shell shouldn't change

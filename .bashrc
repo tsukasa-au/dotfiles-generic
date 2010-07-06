@@ -1,3 +1,5 @@
+# vim:set nolist noet tw=0 ts=4 sw=4 sts=4:
+
 # We run the environment settings for all shells to ensure it's always set up
 source "${HOME}/.bash/environment"
 

@@ -1,4 +1,5 @@
 #! bash
+# vim:set nolist noet tw=0 ts=4 sw=4 sts=4:
 
 # Sets up the shell for interactive commands
 
