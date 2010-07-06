@@ -67,6 +67,20 @@ function mcd {
 	cd "${1}"
 }
 
+# This is designed to be annoying enough for me to actually commit any changes
+# I have made.
+function _hg_show_changed_files {
+	local HGDIR="$1"
+	if [ -z "$(which hg 2>/dev/null)" ]; then
+		return
+	fi
+	local hgdotchanges="$(cd "${HGDIR}" && hg status --modified --added --removed --deleted --no-status)" 2>/dev/null
+	if [ -n "$hgdotchanges" ]; then
+		echo "WARNING: There are uncommited dotfile changes, to the following files:" >&2
+		echo "$hgdotchanges" >&2
+	fi
+}
+
 
 # Load local functions
 ssource "${HOME}/.bash/functions_local"
