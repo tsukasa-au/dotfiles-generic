@@ -13,7 +13,13 @@ function cleanup {
 	fi
 }
 
-MYTEMP="$(mktemp -d)"
+if [ -n "$(which md5sum) 2>/dev/null" ]; then
+  function md5sum {
+    openssl md5 "$@" | awk '{print $2}'
+  }
+fi
+
+MYTEMP="$(mktemp -d -t "$(basename "$0")")"
 trap "cleanup" 15 0
 
 input="$(realpath "$1")"
