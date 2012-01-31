@@ -1,0 +1,78 @@
+#!/usr/bin/env python
+# vim:set nolist ts=2 sw=2 sts=2 noet tw=0:
+
+import os, sys, subprocess, tempfile, zipfile
+
+def main(inputFilename):
+	print TEMPDIR
+	# Get the fully qualified path name for the input file
+	inputFilename = os.path.join(os.getcwd(), inputFilename)
+
+	inputFilename, inputExtension = os.path.splitext(inputFilename)
+
+	outputDirectory = os.path.dirname(inputFilename)
+	if inputFilename.endswith('.part1'):
+		outputFilename = '%s.zip' % (inputFilename[:-len('.part1')], )
+	elif inputExtension in ('.7z', '.rar'):
+		outputFilename = '%s.zip' % (inputFilename, )
+	else:
+		outputFilename = '%s[CONVERTED].zip' % (inputFilename, )
+	
+	assert not os.path.exists(outputFilename), 'file "%s" exists' % (outputFilename)
+
+	print inputExtension
+	if inputExtension.lower() in ('.rar', '.rar_', '.cbr'):
+		cmdline = [
+			'unrar', 
+			'x',
+		]
+		if os.path.exists('passwd.txt'):
+			cmdline.append('-p%s' % open('passwd.txt').read().strip())
+	elif inputExtension.lower() in ('.zip', '.cbz'):
+		cmdline = [
+			'unzip',
+		]
+	elif inputExtension.lower() in ('.7z', ):
+		cmdline = [
+			'7z',
+			'x',
+		]
+	else:
+		assert False, 'Unknown filetype'
+	
+	cmdline.append('%s%s' % (inputFilename, inputExtension))
+
+	os.chdir(TEMPDIR)
+
+	# Extract the archive
+	extractor = subprocess.Popen(cmdline)
+	extractor.wait()
+
+	createArchive(os.path.join(outputDirectory, outputFilename))
+
+def createArchive(outputFilename):
+	if not os.listdir('./'):
+		# Seems there is nothing for us to do...
+		return
+	output = zipfile.ZipFile(outputFilename, 'w')
+	for dirpath, dirnames, filenames in os.walk('./'):
+		for filename in filenames:
+			output.write(os.path.join(dirpath, filename))
+	output.close()
+
+def removedirs(basedir):
+	for dirpath, dirnames, filenames in os.walk(basedir, topdown=False):
+		for dirname in dirnames:
+			os.rmdir(os.path.join(dirpath, dirname))
+
+		for filename in filenames:
+			os.unlink(os.path.join(dirpath, filename))
+	os.rmdir(basedir)
+
+if __name__ == "__main__":
+	TEMPDIR = tempfile.mkdtemp()
+	try:
+		main(sys.argv[1])
+	finally:
+		# Perform cleanup
+		removedirs(TEMPDIR)
