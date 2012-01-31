@@ -19,7 +19,7 @@ export HISTSIZE="20000"
 export HISTFILESIZE="20000"
 
 # Expand any symbolic links in the TMPDIR environment variable
-[ -n "$TMPDIR" ] && export TMPDIR="$(cd "${TMPDIR}" && pwd -P)"
+[[ -n "$TMPDIR" ]] && export TMPDIR="$(cd "${TMPDIR}" && pwd -P)"
 
 # Load the bash functions
 source "${HOME}/.bash/functions"
@@ -32,8 +32,8 @@ pathappend "/sbin"
 pathappend "/usr/sbin"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-       debian_chroot=$(cat /etc/debian_chroot)
+if [[ -z "${debian_chroot}" -a -r /etc/debian_chroot ]]; then
+       debian_chroot="$(cat /etc/debian_chroot)"
 fi
 
 # ~/bin should be in the front of path if it exists

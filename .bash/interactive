@@ -8,7 +8,7 @@
 #stty erase $(tput kbs)
 
 # Prompt: user@host:(chroot)directory$
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\n\$ '
+PS1='\u@\h:'"${debian_chroot:+($debian_chroot)}"'\w\n\$ '
 
 # Check for unsupported TERM variable
 if ! tput init &> /dev/null; then
@@ -21,7 +21,7 @@ ssource "${HOME}/.bash/colors"
 
 # xterm titlebar displays 'hostname:workingdir'
 if tput hs || tput tsl &> /dev/null; then
-	PROMPT_COMMAND='tput tsl; echo -n "$(hostname| cut -d. -f1):${PWD/$HOME/~}"; tput fsl;'
+	PROMPT_COMMAND='tput tsl; echo -n "${HOSTNAME/.*}:${PWD/$HOME/~}"; tput fsl;'
 fi
 
 # screen window displays current command
@@ -54,4 +54,4 @@ ssource "${HOME}/.bash/interactive_local"
 # Load bash completion if available
 ssource "/etc/bash_completion"
 
-[ -z "$_DISABLE_HG_CHECK" ] && _hg_show_changed_files "${HOME}/$(readlink ~/.bash)/.."
+[[ -z "$_DISABLE_HG_CHECK" ]] && _hg_show_changed_files "${HOME}/$(readlink ~/.bash)/.."

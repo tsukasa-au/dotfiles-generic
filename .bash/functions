@@ -15,7 +15,7 @@ function pathremove {
 	local DIR
 	local PATHVARIABLE=${2:-PATH}
 	for DIR in ${!PATHVARIABLE} ; do
-		if [ "${DIR}" != "${1}" ] ; then
+		if [[ "${DIR}" != "${1}" ]] ; then
 			NEWPATH="${NEWPATH:+${NEWPATH}:}${DIR}"
 		fi
 	done
@@ -27,7 +27,7 @@ function pathremove {
 #     pathprepend ~/bin PATH
 function pathprepend {
 	pathremove "${1}" "${2}"
-	[ -d "${1}" ] || return
+	[[ -d "${1}" ]] || return
 	local PATHVARIABLE="${2:-PATH}"
 	export ${PATHVARIABLE}="${1}${!PATHVARIABLE:+:${!PATHVARIABLE}}"
 }
@@ -37,7 +37,7 @@ function pathprepend {
 #     pathappend ~/bin PATH
 function pathappend {
 	pathremove "${1}" "${2}"
-	[ -d "${1}" ] || return
+	[[ -d "${1}" ]] || return
 	local PATHVARIABLE=${2:-PATH}
 	export $PATHVARIABLE="${!PATHVARIABLE:+${!PATHVARIABLE}:}${1}"
 }
@@ -45,7 +45,7 @@ function pathappend {
 # Usage: ssource /path/to/shellscript
 # Checks if the file exists before sourcing it
 function ssource {
-	[ -r "${1}" ] && source "${1}"
+	[[ -r "${1}" ]] && source "${1}"
 }
 
 # Sets colours to be appropriate for a light on dark terminal
@@ -71,11 +71,11 @@ function mcd {
 # I have made.
 function _hg_show_changed_files {
 	local HGDIR="$1"
-	if [ -z "$(which hg 2>/dev/null)" ]; then
+	if [[ -z "$(which hg 2>/dev/null)" ]]; then
 		return
 	fi
 	local hgdotchanges="$(cd "${HGDIR}" && hg status --modified --added --removed --deleted --no-status)" 2>/dev/null
-	if [ -n "$hgdotchanges" ]; then
+	if [[ -n "$hgdotchanges" ]]; then
 		echo "WARNING: There are uncommited dotfile changes, to the following files:" >&2
 		echo "$hgdotchanges" >&2
 	fi
