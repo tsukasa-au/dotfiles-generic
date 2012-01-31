@@ -24,7 +24,7 @@ DEFAULTDARK=1
 [[ "${TERM}" = "screen.linux" ]] && DARK="${DARK:-1}"
 [[ "${TERM}" = "putty"        ]] && DARK="${DARK:-1}"
 [[ "${TERM}" = "cygwin"       ]] && DARK="${DARK:-1}"
-[[ "$(tput colors)" -gt 2     ]] && PS1_COLOR=1
+[[ "$(tput colors || echo 0)" -gt 2 ]] && PS1_COLOR=1
 
 # Override COLORFGBG (probably used the darkterm or lightterm function
 if [[ -n "${DARK}" ]]; then
@@ -44,7 +44,7 @@ if [[ -n "${COLORFGBG}" ]]; then
 		else
 			DARK=1
 		fi
-	elif [[ "${BG}" -ge 0 -a "${BG}" -le 6   -o "${BG}" -eq 8 ]]; then
+	elif [[ "${BG}" -ge 0 && "${BG}" -le 6 || "${BG}" -eq 8 ]]; then
 		DARK=1
 	else
 		DARK=0

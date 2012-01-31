@@ -54,4 +54,4 @@ ssource "${HOME}/.bash/interactive_local"
 # Load bash completion if available
 ssource "/etc/bash_completion"
 
-[[ -z "$_DISABLE_HG_CHECK" ]] && _hg_show_changed_files "${HOME}/$(readlink ~/.bash)/.."
+[[ -z "$_DISABLE_HG_CHECK" ]] && _hg_show_changed_files "$(readlink ~/.bash)/.."
