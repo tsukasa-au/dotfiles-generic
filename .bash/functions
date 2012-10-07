@@ -81,6 +81,12 @@ function _hg_show_changed_files {
 	fi
 }
 
+function git_branch_name
+{
+  local git_ref="$(git symbolic-ref HEAD 2> /dev/null)"
+  echo "${git_ref#refs/heads/}"
+}
+
 
 # Load local functions
 ssource "${HOME}/.bash/functions_local"
