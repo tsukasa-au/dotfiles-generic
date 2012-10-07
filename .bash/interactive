@@ -24,10 +24,12 @@ if (tput hs || tput tsl) &> /dev/null; then
 	PROMPT_COMMAND='tput tsl; echo -n "${HOSTNAME/.*}:${PWD/$HOME/~}"; tput fsl;'
 fi
 
+PROMPT_COMMAND='GIT_BRANCH="$(git_branch_name)";'
+
 # screen window displays current command
 case "${TERM}" in
 screen*)
-	PROMPT_COMMAND="$PROMPT_COMMAND echo -ne '\033k\033\\'"
+	PROMPT_COMMAND="$PROMPT_COMMAND echo -ne '\033k\033\\';"
 	;;
 esac
 
@@ -47,6 +49,8 @@ alias grep='grep --color=auto --exclude "*.svn-base"'
 shopt -s checkwinsize
 # Don't attempt to tab-complete an empty line
 shopt -s no_empty_cmd_completion
+
+mkdir -p "/tmp/$USER/ssh"
 
 # Local customisations
 ssource "${HOME}/.bash/interactive_local"

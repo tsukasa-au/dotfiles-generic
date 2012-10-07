@@ -15,8 +15,11 @@ export CVS_RSH="ssh"
 export RSYNC_RSH="ssh"
 export PYTHONSTARTUP="${HOME}/.pythonrc.py"
 export HISTCONTROL="ignoredups"
-export HISTSIZE="20000"
-export HISTFILESIZE="20000"
+export HISTIGNORE="&:ls:[bf]g:exit"
+export HISTSIZE="20000000"
+export HISTFILESIZE="20000000"
+
+shopt -s histappend
 
 # Expand any symbolic links in the TMPDIR environment variable
 [[ -n "$TMPDIR" ]] && export TMPDIR="$(cd "${TMPDIR}" && pwd -P)"

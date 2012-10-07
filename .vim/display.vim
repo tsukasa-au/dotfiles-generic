@@ -53,3 +53,12 @@ set hlsearch
 set mouse=a
 set mousehide
 
+if &term =~ "screen"
+  set term=xterm
+  set ttymouse=xterm2
+endif
+if &term =~ "xterm"
+  set t_Co=256
+  set ttymouse=xterm2
+endif
+

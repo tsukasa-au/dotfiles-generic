@@ -17,6 +17,7 @@ function! ToggleCommentify()
 				
 	let commentMapping = {
 		\'###': [
+			\'cfg',
 			\'conf',
 			\'debsources',
 			\'exports',
@@ -36,7 +37,7 @@ function! ToggleCommentify()
 			\'terminfo',
 			\'vrml',
 			\'xf86conf',
-			\'cfg',
+			\'yaml',
 		\],
 \
 		\'///': [

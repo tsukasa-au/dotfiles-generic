@@ -11,13 +11,11 @@ export NORMBGCOLOR='#2e3436'
 export NORMFGCOLOR='#f5a400'
 
 # Width of your screen in pixels, so we can work out how wide to make the status bars
-###export WIDTH=1280
-
 export WIDTH="$(xdpyinfo | grep 'dimensions:' | awk '{ print $2;}' | cut -f1 -d'x')"
 export WIDTH=$((WIDTH - 50))
 
 # Width of the right-hand bar
-export RBARWIDTH=500
+export RBARWIDTH=900
 
 # Load my keyboard hacks
 if [ -r ~/.xmodmaprc ]; then
@@ -27,25 +25,28 @@ fi
 export LC_CTYPE=en_AU.UTF-8
 xscreensaver -no-splash &
 
-if which syssensor-x11 &>/dev/null; then
-	syssensor-x11 &
-fi
-
 if which fbpanel &>/dev/null; then
 	fbpanel &
 fi
 
+#         | low_power |  standby   |    off     |
+xset dpms $((05 * 60)) $((20 * 60)) $((20 * 60))
+
 # Run the status bar, with battery/wifi/time/whatever information you have
-if [ -e "${HOME}/.fonts/Monaco.ttf" ]; then
-	$HOME/bin/.installs/xmonad_bar/bar.py -x $RBARWIDTH -w $(($WIDTH - $RBARWIDTH)) --font-name 'Monaco:size=8:bold' &
-else
-	$HOME/bin/.installs/xmonad_bar/bar.py -x $RBARWIDTH -w $(($WIDTH - $RBARWIDTH)) &
-fi
+###if [ -e "${HOME}/.fonts/Monaco.ttf" ]; then
+###	$HOME/bin/.installs/xmonad_bar/bar.py -x $RBARWIDTH -w $(($WIDTH - $RBARWIDTH)) --font-name 'Monaco:size=8:bold' &
+###else
+###	$HOME/bin/.installs/xmonad_bar/bar.py -x $RBARWIDTH -w $(($WIDTH - $RBARWIDTH)) &
+###fi
 
 if echo "$STARTUP" | egrep "gnome-session$" || [ -z "$STARTUP" ]; then
 ###	xterm &
 	return
 fi
+
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# -= We should not get below this line... In theory anyway.                  =-
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 nm-applet &
 

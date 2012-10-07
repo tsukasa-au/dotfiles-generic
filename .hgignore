@@ -1,20 +1,26 @@
 .mutt/aliases
 .mutt/header_cache
+
 .vim/abbrsout.vim
 .vim/local.vim
+.vim/viminf*.tmp
 .vim/viminfo
-.ssh/identity
-.ssh/identity.pub
+
+.ssh/agent.*
+.ssh/authorized_keys
 .ssh/id_dsa
 .ssh/id_dsa.pub
 .ssh/id_rsa
 .ssh/id_rsa.pub
+.ssh/identity
+.ssh/identity.pub
 .ssh/known_hosts
-.ssh/authorized_keys
 
 .xmonad/xmonad-*
 .xmonad/xmonad.errors
-.xmonad/xmonad.hi
-.xmonad/xmonad.o
+.xmonad/*.hi
+.xmonad/*.o
+.xmonad/lib/*.hi
+.xmonad/lib/*.o
 
 bin/*
