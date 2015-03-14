@@ -7,10 +7,12 @@ set copyindent
 
 " Tab stuff
 " Size of a \t
-set tabstop=4
+set tabstop=2
 " Delete this many space chars when pressing backspace
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
+" Use spaces rather than tabs anyway
+set expandtab
 
 " Use :retab to change the file to entirely space indents
 " Use :retab! to change the file to entirely tab indents
