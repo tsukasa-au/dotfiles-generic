@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+# vim:set nolist et tw=0 ts=2 sw=2 sts=2: */
+
+import os
+import re
+import socket
+import subprocess
+import sys
+import time
+
+def main(remote_server, *remote_cmds):
+  remote_hostname = remote_server.split('@', 1)[-1]
+  try:
+    remote_ip = socket.gethostbyname(remote_hostname)
+  except socket.gaierror:
+    remote_ip = remote_hostname
+
+  cmd = ['ssh', '-t', remote_server, '--', 'mosh-server', 'new', '-c', '256']
+  if remote_cmds:
+    cmd.append('--')
+    cmd.extend(remote_cmds)
+  print ' '.join(cmd)
+  p = subprocess.Popen(
+      cmd,
+      stdout=subprocess.PIPE)
+
+  port, key = None, None
+  for line in p.stdout:
+    sys.stdout.write(line)
+
+    m = re.match(r'^MOSH CONNECT (\d+?) ([A-Za-z0-9/+]{22})\s*$', line)
+    if m:
+      port, key = m.groups()
+      continue
+
+    # Allow the remote host to override the hostname resolution.
+    m = re.match(r'^MOSH REMOTE_HOST ([0-9.]+)\s*$', line)
+    if m:
+      remote_ip, = m.groups()
+      continue
+
+  p.wait()
+
+  assert port is not None
+  assert key is not None
+
+  env = dict(os.environ)
+  env['TERM'] = 'xterm-256color'  # Make 256 colour mode work.
+  env['MOSH_KEY'] = key
+
+  # Enable utf8 mouse mode.
+###  print '\x1b[?1005h\x1b[?1002h'
+
+  # Poor-man's debugging.
+  print >>sys.stderr, 'Connecting to most client at %s:%s' % (remote_ip, port)
+  time.sleep(2)
+
+  # Actually start mosh-client.
+  os.execvpe('mosh-client', ['mosh-client', remote_ip, port], env)
+
+
+if __name__ == "__main__":
+  main(*sys.argv[1:])
