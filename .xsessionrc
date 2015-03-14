@@ -22,7 +22,6 @@ if [ -r ~/.xmodmaprc ]; then
 	xmodmap ~/.xmodmaprc
 fi
 
-export LC_CTYPE=en_AU.UTF-8
 xscreensaver -no-splash &
 
 if which fbpanel &>/dev/null; then
