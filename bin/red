@@ -1,0 +1,20 @@
+#!/bin/bash
+
+LOCATION="${1:-SFO}"
+
+if [[ "${LOCATION}" = "SYD" ]]; then
+  LONG_LAT="-33.51:151.12"
+elif [[ "${LOCATION}" = "SFO" ]]; then
+  LONG_LAT="37.78:-122.42"
+elif [[ "${LOCATION}" = "LON" ]]; then
+  LONG_LAT="51.5:-0.144"
+elif [[ "${LOCATION}" = "ZRH" ]]; then
+  LONG_LAT="47.37:8.55"
+elif [[ "${LOCATION}" = "NYC" ]]; then
+  LONG_LAT="40.71:-74.01"
+else
+  echo "Unknown location '${LOCATION}'." >&2
+  exit 1
+fi
+
+exec redshift -v -l "${LONG_LAT}" -t 5700:3700 -m randr
