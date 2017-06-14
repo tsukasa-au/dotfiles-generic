@@ -24,3 +24,5 @@
 .xmonad/lib/*.o
 
 bin/*
+
+.*.sw?
