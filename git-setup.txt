@@ -1,0 +1,69 @@
+#!/bin/bash
+# vim:set ft=sh
+
+# Notes
+# Run this as:
+# $ wget -O - http://tsukasa.net.au/files/gitsetup.txt | bash
+# or
+# $ curl http://tsukasa.net.au/files/gitsetup.txt | bash
+# or
+# $ curl http://tsukasa.net.au/files/gitsetup.txt | R=http://host/repo bash
+
+function die {
+  echo "$@" >&2
+  exit 1
+}
+
+# Some blank lines
+echo -ne "\n\n\n"
+
+GITDOTFILES="https://github.com/tsukasa-au/dotfiles-generic.git"
+if [ -n "${R}" ]; then
+	GITDOTFILES="${R}"
+fi
+echo "Using repository: ${GITDOTFILES}"
+sleep 3
+
+
+# Check for mercurial install
+if ! git --help &> /dev/null; then
+	echo "You must install git..."
+	if apt-get &> /dev/null; then
+		echo "Using apt-get..."
+		sudo apt-get install git
+	elif pacman &> /dev/null; then
+		echo "Using yum..."
+		sudo pacman -Syu git
+	fi
+	if ! git --help &> /dev/null; then
+		die "You're on your own. Exiting..."
+	fi
+fi
+
+# Safety checks
+cd
+DOTDIR="${DOTDIR:-.dotfiles}"
+
+if [ -e "${DOTDIR}" ]; then
+	die "Error, ${DOTDIR} already exists."
+fi
+
+# Install and backup
+git clone "${GITDOTFILES}" "${DOTDIR}" || die "Could not clone '${GITDOTFILES}'"
+
+mkdir oldsettings || die "Could not create the directory 'oldsettings'"
+
+for i in $(ls -A "${DOTDIR}" | grep -v '^\.git\(ignore\)\?$' | grep -v README | grep -v git-setup.txt); do
+	echo "${i}"
+	if [ -e "${i}" -o -L "${i}" ]; then
+		mv "${i}" oldsettings/
+	fi
+	ln -s "${DOTDIR}/${i}" ./
+done
+
+# Restore some important files that may already have existed
+for to_keep in .ssh/{authorized_keys,known_hosts,id_rsa{,.pub}}; do
+  if [ -e "oldsettings/${to_keep}" ]; then
+    cp "oldsettings/${to_keep}" "$(dirname "${to_keep}")"
+  fi
+done
