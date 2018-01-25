@@ -1,6 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # vim:set nolist et tw=0 ts=2 sw=2 sts=2: */
 
+import logging
 import os
 import re
 import socket
@@ -10,16 +11,24 @@ import time
 
 def main(remote_server, *remote_cmds):
   remote_hostname = remote_server.split('@', 1)[-1]
+  remote_mosh_command = 'mosh-server'
   try:
     remote_ip = socket.gethostbyname(remote_hostname)
-  except socket.gaierror:
+  except socket.gaierror as e:
+    logging.info('Failed to parse hostname %s: %r', remote_hostname, e)
     remote_ip = remote_hostname
+    remote_mosh_command = 'bin/mosh-server-remote'
 
-  cmd = ['ssh', '-t', remote_server, '--', 'mosh-server', 'new', '-c', '256']
+  lang = os.environ.get('LANG', 'en_US.utf-8')
+  logging.info(
+      'Remote ip is %r, remote command is %r', remote_ip, remote_mosh_command)
+
+  cmd = ['ssh', '-t', remote_server, '--', 'LANG=%s' % lang, remote_mosh_command, 'new', '-c', '256']
   if remote_cmds:
     cmd.append('--')
     cmd.extend(remote_cmds)
-  print ' '.join(cmd)
+
+  logging.debug('Executing command: %s', ' '.join(cmd))
   p = subprocess.Popen(
       cmd,
       stdout=subprocess.PIPE)
@@ -34,9 +43,12 @@ def main(remote_server, *remote_cmds):
       continue
 
     # Allow the remote host to override the hostname resolution.
-    m = re.match(r'^MOSH REMOTE_HOST ([0-9.]+)\s*$', line)
+    m = re.match(r'^MOSH IP ([0-9.]+)\s*$', line)
     if m:
       remote_ip, = m.groups()
+      logging.info(
+          'Remote side overwrote the host we need to connect to: %s',
+          remote_ip)
       continue
 
   p.wait()
@@ -52,12 +64,13 @@ def main(remote_server, *remote_cmds):
 ###  print '\x1b[?1005h\x1b[?1002h'
 
   # Poor-man's debugging.
-  print >>sys.stderr, 'Connecting to most client at %s:%s' % (remote_ip, port)
-  time.sleep(2)
+  logging.info('Connecting to mosh client at %s:%s', remote_ip, port)
+  time.sleep(4)
 
   # Actually start mosh-client.
   os.execvpe('mosh-client', ['mosh-client', remote_ip, port], env)
 
 
 if __name__ == "__main__":
+  logging.basicConfig(level=logging.DEBUG)
   main(*sys.argv[1:])
