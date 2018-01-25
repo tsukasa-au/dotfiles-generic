@@ -41,6 +41,7 @@ function! ToggleCommentify()
 		\],
 \
 		\'///': [
+			\'arduino',
 			\'c',
 			\'cpp',
 			\'java',
