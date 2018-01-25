@@ -3,11 +3,11 @@
 
 # Notes
 # Run this as:
-# $ wget -O - http://tsukasa.net.au/files/gitsetup.txt | bash
+# $ wget -O - https://raw.githubusercontent.com/tsukasa-au/dotfiles-generic/master/git-setup.txt | bash
 # or
-# $ curl http://tsukasa.net.au/files/gitsetup.txt | bash
+# $ curl https://raw.githubusercontent.com/tsukasa-au/dotfiles-generic/master/git-setup.txt | bash
 # or
-# $ curl http://tsukasa.net.au/files/gitsetup.txt | R=http://host/repo bash
+# $ curl https://raw.githubusercontent.com/tsukasa-au/dotfiles-generic/master/git-setup.txt | R=http://host/repo bash
 
 function die {
   echo "$@" >&2

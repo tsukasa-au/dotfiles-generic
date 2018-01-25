@@ -20,16 +20,11 @@ Symlink the config files into your home directory:
 
 
 You're done now. You probably want to move your ssh keys back into ~/.ssh
-(which now links to ~/.hgdotfiles-computername/.ssh), as well as add a few
-machine specific configs to the bash init scripts.
+(which now links to ~/.dotfiles/.ssh), as well as add a few machine specific
+configs to the bash init scripts.
 
 Create files in ~/.bash called environment_local, interactive_local, etc to
-do this. Also, learn how to use Mercurial and use it to version control other
-configure files of yours.
+do this.
 
-For OSX/BSD you probably want to look at http://delx.net.au/hg/hgdotfiles-macosx
-
-Here are some good Mercurial tutorials:
-http://hgbook.red-bean.com/
-http://www.selenic.com/mercurial/wiki/index.cgi/QuickStart
-
+To simplify this, you can also just run:
+  $ curl https://raw.githubusercontent.com/tsukasa-au/dotfiles-generic/master/git-setup.txt | bash
