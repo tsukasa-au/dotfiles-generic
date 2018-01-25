@@ -13,10 +13,6 @@ attrcolor b ".I"
 
 hardstatus alwayslastline                                                                                                                          
 
-# James' line
-###caption always '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
-
-# Greg's line
 # Host | load avg | date time | windows
 hardstatus string '%{bk}%{w} %H %{y}|%{G} %l %{y}|%{W} %d/%m %c %{y}|%{W} %-w%{+u}%n %t%{-u}%+w'
 
