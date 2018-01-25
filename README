@@ -3,20 +3,20 @@ This is a set of configuration files for a bunch of Unix apps I use regularly.
 The way I usually use this is as follows. Change the lines as appropriate for
 your system.
 
-Install Mercurial:
-	$ sudo apt-get install mercurial
+Install Git:
+	$ sudo pacman -Syu git
 
 Change into your home directory and make a clone of the repository:
 	$ cd
-	$ hg clone http://delx.cjb.net/hg/hgdotfiles-generic .hgdotfiles-computername
+	$ git clone https://github.com/tsukasa-au/dotfiles-generic.git .dotfiles
 
 Make a backup of any existing files:
 	$ mkdir backup
 	$ mv .bash* .ssh .vim* .Xresources .xscreensaver .screenrc .pythonrc.py .inputrc .ssh backup
 
 Symlink the config files into your home directory:
-	$ for f in $(ls -A .hgdotfiles-computername); do ln -s .hgdotfiles-computername/$i .; done
-	$ rm .hg .hgignore
+	$ for f in $(ls -A .dotfiles); do ln -s .dotfiles/$i .; done
+	$ rm .hg .hgignore .git .gitignore
 
 
 You're done now. You probably want to move your ssh keys back into ~/.ssh
