@@ -24,7 +24,7 @@ if (tput hs || tput tsl) &> /dev/null; then
 	PROMPT_COMMAND='tput tsl; echo -n "${HOSTNAME/.*}:${PWD/$HOME/~}"; tput fsl;'
 fi
 
-PROMPT_COMMAND='GIT_BRANCH="$(git_branch_name)";'
+PROMPT_COMMAND="${PROMPT_COMMAND} GIT_BRANCH=\"\$(git_branch_name)\";"
 
 # screen window displays current command
 case "${TERM}" in
