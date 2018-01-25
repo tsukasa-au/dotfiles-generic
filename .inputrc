@@ -1,5 +1,6 @@
 set mark-symlinked-directories on
 set editing-mode vi
+set colored-stats
 
 set keymap vi-insert
 "\C-l": clear-screen
