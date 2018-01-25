@@ -13,13 +13,18 @@ function cleanup {
 	fi
 }
 
+function die {
+  echo -- "$@" >&2
+  exit 1
+}
+
 if [ -n "$(which md5sum) 2>/dev/null" ]; then
   function md5sum {
     openssl md5 "$@" | awk '{print $2}'
   }
 fi
 
-MYTEMP="$(mktemp -d -t "$(basename "$0")")"
+MYTEMP="$(mktemp -d -t "$(basename "$0").XXXXXXXXXX")"
 trap "cleanup" 15 0
 
 input="$(realpath "$1")"
@@ -29,7 +34,7 @@ else
 	output="${input}"
 fi
 
-cd "${MYTEMP}"
+cd "${MYTEMP}" || die "Could not change directory"
 
 sqlite3 "$input" .dump > input.sql || exit 1
 MD5="$(md5sum "input.sql" | awk '{print $1}')"
