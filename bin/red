@@ -1,20 +1,29 @@
 #!/bin/bash
 
-LOCATION="${1:-SFO}"
+declare -A LOCATIONS_MAP=(
+  # Latitude(+=North):Longitude(+=East)
+  [DEN]="39.8561:-104.6737"  # Denver, CO, USA
+  [HBA]="-42.8821:147.3272"  # Hobart, Australia
+  [HNL]="21.3114:-157.7964"  # Honolulu Hawaii
+  [LON]="51.5:-0.144"        # London, UK
+  [MMX]="55.6058:13.0358"    # Malmö, Sweeden (Near Lund)
+  [NYC]="40.71:-74.01"       # New York, NY, USA
+  [PDX]="45.52:-122.68"      # Portland, OR, USA
+  [SEA]="47.6062:-122.3321"  # Seattle
+  [SFO]="37.78:-122.42"      # San Francisco, CA, USA
+  [SYD]="-33.51:151.12"      # Sydney, Australia
+  [YYJ]="48.4284:-123.3656"  # Victoria, Canada
+  [YYV]="43.7000:-79.4000"   # Toronto, Canada
+  [ZRH]="47.37:8.55"         # Zurich, Switzerland
+)
 
-if [[ "${LOCATION}" = "SYD" ]]; then
-  LONG_LAT="-33.51:151.12"
-elif [[ "${LOCATION}" = "SFO" ]]; then
-  LONG_LAT="37.78:-122.42"
-elif [[ "${LOCATION}" = "LON" ]]; then
-  LONG_LAT="51.5:-0.144"
-elif [[ "${LOCATION}" = "ZRH" ]]; then
-  LONG_LAT="47.37:8.55"
-elif [[ "${LOCATION}" = "NYC" ]]; then
-  LONG_LAT="40.71:-74.01"
+LOCATION="${1:-SFO}"
+if [[ ${LOCATIONS_MAP[$LOCATION]+_} ]]; then
+  LONG_LAT="${LOCATIONS_MAP[${LOCATION}]}"
 else
   echo "Unknown location '${LOCATION}'." >&2
   exit 1
 fi
 
-exec redshift -v -l "${LONG_LAT}" -t 5700:3700 -m randr
+shift
+exec redshift -v -l "${LONG_LAT}" -t 5700:3700 -m randr "$@"
