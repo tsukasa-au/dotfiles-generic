@@ -5,8 +5,8 @@
 # so it must be fast. Also, starting a shell within a shell shouldn't change
 # the environment. The path manipulation functions are useful for this.
 
-# Files will be created by default rwx user only
-umask 0077
+# Files will be created by default rwx user, rx group only
+umask 0027
 
 # General environment settings
 export PAGER="less"
