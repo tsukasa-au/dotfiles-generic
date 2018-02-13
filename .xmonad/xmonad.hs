@@ -6,11 +6,13 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.WindowNavigation
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.NoBorders
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Config.Xfce
+import XMonad.Actions.CycleWS(nextWS, prevWS)
 
 import XMonad.Hooks.ManageHelpers
 import qualified XMonad.StackSet as W
@@ -52,6 +54,18 @@ main = do
 myKeys = Map.fromList $ [
     ((mod1Mask, xK_p), spawn "/home/gregdarke/bin/dmenu_run -fn '-*-*-medium-r-*-*-24-*'")
     , ((mod1Mask .|. shiftMask, xK_p), spawn "/usr/bin/xfce4-screenshooter --fullscreen")
+
+    -- Make it easier to move windows around within a workspace.
+    , ((mod1Mask .|. controlMask .|. shiftMask, xK_Right), sendMessage $ Move R)
+    , ((mod1Mask .|. controlMask .|. shiftMask, xK_Left ), sendMessage $ Move L)
+    , ((mod1Mask .|. controlMask .|. shiftMask, xK_Up   ), sendMessage $ Move U)
+    , ((mod1Mask .|. controlMask .|. shiftMask, xK_Down ), sendMessage $ Move D)
+
+    -- Make it easier to move between workspaces
+    -- (ctrl-alt+{left,right} changes the active workspace
+    -- by {+,-}1).
+    , ((mod1Mask .|. controlMask, xK_Left  ), prevWS)
+    , ((mod1Mask .|. controlMask, xK_Right ), nextWS)
     ]
 
 -- Statusbar pretty printer
