@@ -1,2 +1,2 @@
-#!/bin/sh
-exe=`path_list_files | dmenu ${1+"$@"}` && exec $exe
+#!/bin/bash
+exe="$("${HOME}/bin/path_list_files" | dmenu "${1+"$@"}")" && exec "${exe}"

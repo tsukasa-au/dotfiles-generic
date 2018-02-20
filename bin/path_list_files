@@ -1,5 +1,5 @@
-#!/bin/sh
-CACHE=/tmp/$USER/.dmenu_cache
+#!/bin/bash
+CACHE="/tmp/${USER}/.dmenu_cache"
 IFS=:
 
 uptodate() {
@@ -7,18 +7,15 @@ uptodate() {
   test -f "$CACHE" &&
   for dir in $PATH
   do
-    test ! $dir -nt "$CACHE" || return 1
+    test ! "$dir" -nt "$CACHE" || return 1
   done
 }
 
-if ! uptodate
-then
-  for dir in $PATH
-  do
-    find "$dir" -mount -mindepth 1 -maxdepth 1 \( -type f -o -type l \) -perm /111 -exec basename '{}' \;
-###    find "$dir" -mount -mindepth 1 -maxdepth 1 -type f -perm /111 -exec basename '{}' \;
-  done | sort | uniq > "$CACHE".$$
-  mv "$CACHE".$$ "$CACHE"
+if ! uptodate; then
+  for dir in $PATH; do
+    find "${dir}" -mount -mindepth 1 -maxdepth 1 \( -type f -o -type l \) -perm /111 -exec basename '{}' \;
+  done | sort | uniq > "${CACHE}".$$
+  mv "${CACHE}".$$ "${CACHE}"
 fi
 
-cat "$CACHE"
+cat "${CACHE}"
