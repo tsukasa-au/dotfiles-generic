@@ -13,8 +13,11 @@ attrcolor b ".I"
 
 hardstatus alwayslastline                                                                                                                          
 
-# Host | load avg | date time | windows
-hardstatus string '%{bk}%{w} %H %{y}|%{G} %l %{y}|%{W} %d/%m %c %{y}|%{W} %-w%{+u}%n %t%{-u}%+w'
+# Assign backtick 1 to have the current username.
+backtick 1 600 3600 /bin/sh -c 'echo $USER'
+
+# User@Host | load avg | date time | windows
+hardstatus string '%{bk}%{w} %1`@%H %{y}|%{G} %l %{y}|%{W} %d/%m %c %{y}|%{W} %-w%{+u}%n %t%{-u}%+w'
 
 # Always send backspace as ^?, which is consistent with the bundled terminfo
 bindkey -k kb stuff ^?
