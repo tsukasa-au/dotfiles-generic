@@ -10,6 +10,9 @@
 # Prompt: user@host:(chroot)directory$
 PS1='\u@\h:'"${debian_chroot:+($debian_chroot)}"'\w\n\$ '
 
+# Clear any previous prompt command set by the OS.
+unset PROMPT_COMMAND
+
 # Check for unsupported TERM variable
 if ! tput init &> /dev/null; then
 	echo "Warning! TERM=$TERM unsupported, using TERM=xterm"
@@ -21,15 +24,15 @@ ssource "${HOME}/.bash/colors"
 
 # xterm titlebar displays 'hostname:workingdir'
 if (tput hs || tput tsl) &> /dev/null; then
-	PROMPT_COMMAND='tput tsl; echo -n "${HOSTNAME/.*}:${PWD/$HOME/~}"; tput fsl;'
+	PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }"'tput tsl; echo -n "${HOSTNAME/.*}:${PWD/$HOME/~}"; tput fsl'
 fi
 
-PROMPT_COMMAND="${PROMPT_COMMAND} GIT_BRANCH=\"\$(git_branch_name)\";"
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }"'GIT_BRANCH="$(git_branch_name)"'
 
 # screen window displays current command
 case "${TERM}" in
 screen*)
-	PROMPT_COMMAND="$PROMPT_COMMAND echo -ne '\033k\033\\';"
+	PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND; }""echo -ne '\033k\033\\';"
 	;;
 esac
 
