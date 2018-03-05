@@ -15,7 +15,7 @@ graphlog =
 
 [pager]
 pager = LESS='FSRX' less
-attend = log, diff
+attend = log, diff, glog
 
 [color]
 status.unknown = magenta bold
