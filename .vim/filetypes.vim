@@ -1,3 +1,6 @@
+" Do not force PEP-8 on my python files.
+let g:python_recommended_style=0
+
 " Make vim aware of filetypes, this loads files in
 " vimdir/{ftplugin,indent}/lang.vim 
 " where vimdir is /usr/share/vim/vimXX/ or ~/.vim/
