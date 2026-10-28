@@ -32,7 +32,7 @@ if ! git --help &> /dev/null; then
 		echo "Using apt-get..."
 		sudo apt-get install git
 	elif pacman &> /dev/null; then
-		echo "Using yum..."
+		echo "Using pacman..."
 		sudo pacman -Syu git
 	fi
 	if ! git --help &> /dev/null; then
@@ -52,13 +52,28 @@ fi
 git clone "${GITDOTFILES}" "${DOTDIR}" || die "Could not clone '${GITDOTFILES}'"
 
 mkdir oldsettings || die "Could not create the directory 'oldsettings'"
+[[ -d .cache ]] || mkdir .cache || die ".cache is not a directory"
+mkdir oldsettings/.cache || die "Could not create the directory 'oldsettings/.cache'"
+[[ -d .config ]] || mkdir .config || die ".config is not a directory"
+mkdir oldsettings/.config || die "Could not create the directory 'oldsettings/.config'"
 
-for i in $(ls -A "${DOTDIR}" | grep -v '^\.git\(ignore\)\?$' | grep -v README | grep -v git-setup.txt); do
+for i in $(ls -A "${DOTDIR}" | grep -v '^\([.]git\|[.]gitignore\|README\|git-setup[.]txt\|[.]cache\|[.]config\)$' ); do
 	echo "${i}"
 	if [ -e "${i}" -o -L "${i}" ]; then
 		mv "${i}" oldsettings/
 	fi
 	ln -s "${DOTDIR}/${i}" ./
+done
+
+for prefix in .config .cache; do
+  [[ -e "${DOTDIR}/${prefix}" ]] || continue
+  for i in $(ls -A "${DOTDIR}/${prefix}" ); do
+    echo "${prefix}/${i}"
+    if [ -e "${prefix}/${i}" -o -L "${prefix}/${i}" ]; then
+      mv "${prefix}/${i}" oldsettings/${prefix}/
+    fi
+    ln -s "${DOTDIR}/${prefix}/${i}" ./${prefix}/
+  done
 done
 
 # Restore some important files that may already have existed
