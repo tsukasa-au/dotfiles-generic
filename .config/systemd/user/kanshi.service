@@ -1,0 +1,14 @@
+[Unit]
+Description=Dynamic output configuration for Wayland compositors
+Documentation=https://sr.ht/~emersion/kanshi
+After=graphical-session.target
+BindsTo=wayland-session@sway.desktop.target
+After=wayland-session@sway.desktop.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/kanshi
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=wayland-session@sway.desktop.target

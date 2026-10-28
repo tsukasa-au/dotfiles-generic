@@ -1,0 +1,15 @@
+# Allow loginctl lock the session
+# lock 'swaylock -f -c 3f0000'
+lock 'systemctl --user start swaylock.service'
+
+# Allow loginctl to unlock the session (eg gdm)
+unlock 'systemctl --user stop swaylock.service; swaymsg "output * power on"'
+
+# 5m timeout to lock screen
+timeout 300 'systemctl --user start swaylock.service'
+
+# 10m timeout to turn off displays
+timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"'
+
+# Lock session before suspend/hibernate
+before-sleep 'systemctl --user start swaylock.service'

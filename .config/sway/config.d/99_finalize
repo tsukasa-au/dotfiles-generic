@@ -1,0 +1,2 @@
+# Ensure that all needed env variables are exported via systemd
+exec uwsm finalize

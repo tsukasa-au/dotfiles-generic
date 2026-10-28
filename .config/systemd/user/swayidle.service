@@ -1,0 +1,12 @@
+[Service]
+ExecStart=/usr/bin/swayidle -w
+WorkingDirectory=~
+
+[Unit]
+Description=Manage screen lock
+After=graphical-session.target
+After=wayland-session@sway.desktop.target
+BindsTo=wayland-session@sway.desktop.target
+
+[Install]
+WantedBy=wayland-session@sway.desktop.target

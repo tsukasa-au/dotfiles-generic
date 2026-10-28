@@ -1,0 +1,11 @@
+[Service]
+ExecStart=/usr/bin/nm-applet
+WorkingDirectory=~
+
+[Unit]
+After=graphical-session.target
+After=wayland-session@sway.desktop.target
+BindsTo=wayland-session@sway.desktop.target
+
+[Install]
+WantedBy=wayland-session@sway.desktop.target

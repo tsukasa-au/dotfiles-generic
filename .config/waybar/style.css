@@ -1,0 +1,15 @@
+@import url("file:///etc/xdg/waybar/style.css");
+
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, ComicCode, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+}
+
+/* 
+window.HDMI-A-1 * {
+  font-size: 24px;
+  background-color: white;
+  color: black;
+}
+*/

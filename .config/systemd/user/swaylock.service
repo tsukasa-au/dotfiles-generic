@@ -1,0 +1,11 @@
+[Service]
+ExecStart=/usr/bin/swaylock -c 3f0000
+KillSignal=SIGUSR1
+RestartKillSignal=SIGKILL
+WorkingDirectory=~
+
+[Unit]
+Description=Sway screen lock
+After=graphical-session.target
+After=wayland-session@sway.desktop.target
+BindsTo=wayland-session@sway.desktop.target
