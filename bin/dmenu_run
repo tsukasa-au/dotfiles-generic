@@ -1,2 +1,13 @@
 #!/bin/bash
-exe="$("${HOME}/bin/path_list_files" | dmenu "${1+"$@"}")" && exec "${exe}"
+to_run="$("${HOME}/bin/path_list_files" | wmenu)" || exit 1
+case "${to_run}" in
+  firefox.desktop)
+    # Explicitly set the firefox unit name, so we can depend on it on other unit files
+    exec uwsm app -t service -u 'app-firefox-desktop.service' -- firefox.desktop
+    ;;
+  *)
+    # NOTE: We run things as a service, to stop as much junk from ending up in
+    # the logs of sway (scopes keep stdout/stderr from their caller).
+    exec uwsm app -t service -- "${to_run}"
+    ;;
+esac
