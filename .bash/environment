@@ -16,8 +16,9 @@ export RSYNC_RSH="ssh"
 export PYTHONSTARTUP="${HOME}/.pythonrc.py"
 export HISTCONTROL="ignoredups"
 export HISTIGNORE="&:ls:[bf]g:exit"
-export HISTSIZE="20000000"
-export HISTFILESIZE="20000000"
+export HISTSIZE="-1"  # Disable trimming in-memory history size
+export HISTFILESIZE="-1"  # Disable size based truncation (on-disk)
+export HISTTIMEFORMAT='%Y-%m-%d %H:%M:%S '
 
 shopt -s histappend
 
