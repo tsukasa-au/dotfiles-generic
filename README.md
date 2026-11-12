@@ -14,7 +14,7 @@ your system.
 1. Change into your home directory and make a clone of the repository:
     ```shell
     $ cd
-    $ git clone https://github.com/tsukasa-au/dotfiles-generic.git .dotfiles
+    $ git clone https://git.tsukasa.au/tsukasa-au/dotfiles-generic.git .dotfiles
     ```
 
 1. Make a backup of any existing files:
@@ -40,5 +40,5 @@ do this.
 To simplify this, you can also just run:
 
   ```shell
-  $ curl https://raw.githubusercontent.com/tsukasa-au/dotfiles-generic/master/git-setup.txt | bash
+  $ curl https://git.tsukasa.au/tsukasa-au/dotfiles-generic/raw/branch/master/git-setup.txt | bash
   ```
