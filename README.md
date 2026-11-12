@@ -40,5 +40,5 @@ do this.
 To simplify this, you can also just run:
 
   ```shell
-  $ curl https://git.tsukasa.au/tsukasa-au/dotfiles-generic/raw/branch/master/git-setup.txt | bash
+  $ curl https://git.tsukasa.au/tsukasa-au/dotfiles-generic/raw/branch/main/git-setup.txt | bash
   ```
