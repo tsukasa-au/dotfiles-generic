@@ -12,7 +12,7 @@ set $mod Mod4
 set $term uwsm app -- org.gnome.Terminal.desktop
 # Your preferred application launcher
 #set $menu wmenu-run
-set $menu ~/bin/dmenu_run
+set $menu ~/bin/wmenu_run
 set $wob_socket $XDG_RUNTIME_DIR/wob.sock
 
 ### Output configuration

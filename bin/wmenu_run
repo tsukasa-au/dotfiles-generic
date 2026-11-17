@@ -1,0 +1,245 @@
+#!/usr/bin/env python3
+
+from collections.abc import Collection, Sequence, Set
+import dataclasses
+import os
+import pathlib
+import re
+import subprocess
+import typing
+
+_ROOT_PATHS: Sequence[pathlib.Path] = (
+    pathlib.Path('/usr/share/applications'),
+)
+_CACHE_PATH: pathlib.Path = pathlib.Path.home() / ".wmenu_cache"
+
+_DESKTOP_GROUP_HEADER_PARSER = re.compile(
+    # All ASCII characters except for `[`, `]`, and control characters are allowed in the group name.
+    "^" + re.escape("[") + "(?P<groupname>[A-Za-z0-9 !\"#$%&'()*+.\\-./:;<=>?@\\\\^_`{|}~ ]*)" + re.escape("]") + "$")
+_DESKTOP_ENTRIES_PARSER = re.compile("^(?P<key>[A-Za-z0-9-]+)(?:\\[(?P<locale>[A-Za-z0-9@_]+)\\])? *= *(?P<value>.*)$")
+
+
+@dataclasses.dataclass
+class ParsedDesktopFileGroup:
+  name: str
+  entries: dict[str, str]
+
+
+@dataclasses.dataclass
+class ParsedDesktopFile:
+  path: pathlib.PurePath
+  groups: dict[str, ParsedDesktopFileGroup]
+
+  @classmethod
+  def _emit_lines(cls, f: typing.TextIO):
+    for line in f:
+      line = line.rstrip("\n")
+      if not line or line.startswith("#"):
+        # Ignore comments/blank lines
+        continue
+      yield line
+
+  @classmethod
+  def parse(cls, path: pathlib.PurePath, f: typing.TextIO) -> typing.Self:
+    lines = cls._emit_lines(f)
+    # The "Desktop Entry" group should be the first non-comment/non-empty line
+    # content in the file.
+    line = next(lines, None)
+    m = _DESKTOP_GROUP_HEADER_PARSER.match(line)
+    if not m:
+      raise ValueError(f"Expected group start, found {group_name!r}")
+    group_name, = m.groups()
+    group_entries: dict[str, str] = {}
+    groups: dict[str, ParsedDesktopFileGroup] = {group_name: ParsedDesktopFileGroup(group_name, group_entries)}
+
+    while line := next(lines, None):
+      if m := _DESKTOP_GROUP_HEADER_PARSER.match(line):
+        group_name, = m.groups()
+        group_entries = {}
+        groups[group_name] = ParsedDesktopFileGroup(group_name, group_entries)
+      elif m := _DESKTOP_ENTRIES_PARSER.match(line):
+        key, locale, value = m.groups()
+        if locale:
+          continue
+        if key in groups:
+          raise ValueError(f"Key {key!r} already exists. {group_entries[key]=!r}")
+        group_entries[key] = value
+      else:
+        raise ValueError(f"Unable to parse line: {line!r}")
+    return cls(path, groups)
+
+
+@dataclasses.dataclass
+class DesktopApplicationEntry:
+  version: str | None
+  name: str
+  generic_name: str | None
+  no_display: bool
+  comment: str | None
+  icon: str | None
+  hidden: bool
+  dbus_activatable: bool
+  only_show_in: Set[str]
+  not_show_in: Set[str]
+  try_exec: str | None
+  exec: str | None
+  path: str | None
+  terminal: bool
+  actions: Set[str]
+  mime_type: Set[str]
+  categories: Set[str]
+  implements: Set[str]
+  keywords: Set[str]
+  startup_notify: boolean | None
+  startup_wmclass: str | None
+  # url
+  prefers_non_default_gpu: bool | None
+  single_main_window: bool | None
+
+  _raw: ParsedDesktopFile
+
+  @property
+  def deleted(self):
+    return self.hidden
+
+  def should_show(self, current_desktop: Set[str]):
+    if self.only_show_in:
+      return bool(current_desktop.union(self.only_show_in))
+    if self.not_show_in:
+      return not bool(current_desktop.union(self.not_show_in))
+    return True
+
+  @classmethod
+  def parse(cls, entry: ParsedDesktopFile) -> typing.Self:
+    desktop_entry = entry.groups["Desktop Entry"]
+    assert desktop_entry.entries.get("Type") == "Application"
+
+    def _get_string(key: str, required: bool = False):
+      value = desktop_entry.entries.get(key)
+      if required and value is None:
+        raise ValueError(f"Key {key} is required but missing from {desktop_entry!r}")
+      # TODO: Unescape values
+      return value
+    def _get_string_set(key: str, required: bool = False):
+      value = desktop_entry.entries.get(key)
+      if value is None:
+        if required:
+          raise ValueError(f"Key {key} is required but missing from {desktop_entry!r}")
+        return frozenset()
+      # TODO: Unescape values
+      return frozenset(v for v in value.split(";") if v)
+    def _get_locale_string(key: str, required: bool = False):
+      return _get_string(key, required)
+    def _get_locale_string_set(key: str, required: bool = False):
+      return _get_string_set(key, required)
+    def _get_boolean(key: str, required: bool = False, default_if_missing: bool | None = False):
+      value = desktop_entry.entries.get(key)
+      if value is None:
+        if required:
+          raise ValueError(f"Key {key} is required but missing from {desktop_entry!r}")
+        return default_if_missing
+      match value:
+        case "true":
+          return True
+        case "false":
+          return False
+        case _:
+          raise ValueError(f"Unable to parse {value!r} as a boolean.")
+
+    return cls(
+        version=_get_string("Version"),
+        name=_get_locale_string("Name", required=True),
+        generic_name=_get_locale_string("GenericName"),
+        no_display=_get_boolean("NoDisplay"),
+        comment=_get_locale_string("Comment"),
+        icon=_get_locale_string("Icon"),
+        hidden=_get_boolean("Hidden"),
+        dbus_activatable=_get_boolean("DBusActivatable"),
+        only_show_in=_get_string_set("OnlyShowIn"),
+        not_show_in=_get_string_set("NotShowIn"),
+        try_exec=_get_string("TryExec"),
+        exec=_get_string("Exec"),
+        path=_get_string("Path"),
+        terminal=_get_boolean("Terminal"),
+        actions=_get_string_set("Actions"),
+        mime_type=_get_string_set("MimeType"),
+        categories=_get_string_set("Categories"),
+        implements=_get_string_set("Implements"),
+        keywords=_get_locale_string_set("Keywords"),
+        startup_notify=_get_boolean("StartupNotify", default_if_missing=None),
+        startup_wmclass=_get_string("StartupWMClass"),
+        prefers_non_default_gpu=_get_boolean("PrefersNonDefaultGPU"),
+        single_main_window=_get_boolean("SingleMainWindow"),
+        _raw=entry,
+    )
+
+
+def enumerate_applications():
+  for root in _ROOT_PATHS:
+    for entry in root.iterdir():
+      if not entry.is_file():
+        continue
+      if entry.suffix != ".desktop":
+        continue
+      with open(entry, "rt", encoding="utf-8") as f:
+        try:
+          entry = ParsedDesktopFile.parse(entry, f)
+        except ValueError as e:
+          e.add_note(f"While parsing {entry}")
+          raise
+        desktop_entry = entry.groups["Desktop Entry"]
+        if desktop_entry.entries.get("Type") != "Application":
+          continue
+        yield DesktopApplicationEntry.parse(entry)
+
+
+def main():
+  current_desktop = os.environ.get("XDG_CURRENT_DESKTOP")
+  if current_desktop is not None:
+    current_desktop = frozenset(current_desktop.split(":"))
+  entries = list(enumerate_applications())
+  by_name = {}
+  by_keyword = {}
+  for entry in entries:
+    if entry.no_display:
+      continue
+    if current_desktop:
+      if not entry.should_show(current_desktop):
+        continue
+    by_name[f"name:{entry.name} ({entry._raw.path.name})"] = entry
+    for keyword in entry.keywords:
+      by_keyword[f"kw:{keyword} ({entry._raw.path.name})"] = entry
+
+  p = subprocess.Popen(
+      args=["wmenu", "-i"],
+      executable="/usr/bin/wmenu",
+      stdin=subprocess.PIPE,
+      stdout=subprocess.PIPE,
+      text=True,
+  )
+  print("\n".join(sorted(by_name.keys())), file=p.stdin)
+  print("\n".join(sorted(by_keyword.keys())), file=p.stdin)
+  p.stdin.close()
+  if ret := p.wait():
+    raise ValueError(f"wmenu failed with {ret=!r}")
+  key = p.stdout.readline().rstrip("\n")
+  entry = by_name.get(key, by_keyword.get(key))
+  if not entry:
+    raise ValueError(f"Failed to find desktop entry corresponding to {key=!r}")
+
+  # NOTE: We run things as a service, to stop as much junk from ending up in
+  # the logs of sway (scopes keep stdout/stderr from their caller).
+  uwsm_args = ["uwsm", "app", "-t", "service"]
+  match entry._raw.path.name:
+    case "firefox.desktop":
+      # Explicitly set the firefox unit name, so we can depend on it on other unit files
+      uwsm_args += ["-u", "app-firefox-desktop.service"]
+    case _:
+      pass
+  uwsm_args += ["--", entry._raw.path.name]
+  print(f"Will run {uwsm_args=!r}")
+  os.execv("/usr/bin/uwsm", uwsm_args)
+
+
+if __name__ == "__main__":
+  main()
